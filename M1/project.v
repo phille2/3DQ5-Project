@@ -15,7 +15,7 @@ Ontario, Canada
 // It connects the SRAM and VGA together
 // It will first write RGB data of an image with 8x8 rectangles of size 40x30 pixels into the SRAM
 // The VGA will then read the SRAM and display the image
-module experiment2a (
+module project (
 		/////// board clocks                      ////////////
 		input logic CLOCK_50_I,                   // 50 MHz clock
 

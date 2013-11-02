@@ -14,7 +14,7 @@
 
 
 # The default values for assignments are stored in the file
-#		experiment2a_assignment_defaults.qdf
+#		project_assignment_defaults.qdf
 # If this file doesn't exist, and for assignments not listed, see file
 #		assignment_defaults.qdf
 
@@ -26,13 +26,13 @@
 set_global_assignment -name FAMILY "Cyclone II"
 set_global_assignment -name DEVICE EP2C35F672C6
 set_global_assignment -name TOP_LEVEL_ENTITY experiment2a
-set_global_assignment -name LAST_QUARTUS_VERSION "9.0 SP1"
+set_global_assignment -name LAST_QUARTUS_VERSION "13.0 SP1"
 set_global_assignment -name VERILOG_INPUT_VERSION SYSTEMVERILOG_2005
 set_global_assignment -name VERILOG_SHOW_LMF_MAPPING_MESSAGES OFF
 set_global_assignment -name STATE_MACHINE_PROCESSING "USER-ENCODED"
 
 set_global_assignment -name VERILOG_FILE Clock_100_PLL.v
-set_global_assignment -name VERILOG_FILE experiment2a.v
+set_global_assignment -name VERILOG_FILE project.v
 set_global_assignment -name VERILOG_FILE SRAM_Controller.v
 set_global_assignment -name VERILOG_FILE VGA_Controller.v
 set_global_assignment -name VERILOG_FILE PB_Controller.v
@@ -228,3 +228,9 @@ set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
 set_global_assignment -name LL_ROOT_REGION ON -section_id "Root Region"
 set_global_assignment -name LL_MEMBER_STATE LOCKED -section_id "Root Region"
+set_global_assignment -name SOURCE_FILE VGA_Param.h
+set_global_assignment -name VERILOG_FILE VGA_SRAM_interface.v
+set_global_assignment -name VERILOG_FILE UART_SRAM_interface.v
+set_global_assignment -name VERILOG_FILE UART_Receive_Controller.v
+set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files
+set_global_assignment -name ERROR_CHECK_FREQUENCY_DIVISOR 1
