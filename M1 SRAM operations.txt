@@ -1,0 +1,36 @@
+First V segment is moved from 57600:76799 to 76800:95999
+When moving, also expand V to every other line
+Gives room for both U' and V'
+Expand U from bottom up, preventing data being overwritten
+(all memory segments used at this point)
+Upsample U and V to give U' and V'
+Convert Y, U', V' to RGB values, written in 146944:262143
+
+SRAM after expanding
+-----------------------------
+|0         YY                |
+-----------------------------
+| Y Segment (doesn't change) |
+-----------------------------
+|38399     YY                |
+-----------------------------
+|38400    UU                 |
+-----------------------------
+| U' Segment (expanded into  |
+|		old V segment|
+-----------------------------
+|76799    UU                 |
+-----------------------------
+|76800       VV              |
+-----------------------------
+| V' Segment (old unused     |
+|		memory)      |
+-----------------------------
+|146943      VV              |
+-----------------------------
+|146944      RG              |
+-----------------------------
+|  RGB Segment (unchanged)   |
+-----------------------------
+|262143      GB              |
+-----------------------------
