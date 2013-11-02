@@ -1,0 +1,61 @@
+------------------------------------------------------------
+TimeQuest Timing Analyzer Summary
+------------------------------------------------------------
+
+Type  : Slow Model Setup 'CLOCK_50_I'
+Slack : -2.272
+TNS   : -65.716
+
+Type  : Slow Model Setup 'UART_clock_inst|altpll_component|pll|clk[0]'
+Slack : 14.164
+TNS   : 0.000
+
+Type  : Slow Model Hold 'CLOCK_50_I'
+Slack : 0.391
+TNS   : 0.000
+
+Type  : Slow Model Hold 'UART_clock_inst|altpll_component|pll|clk[0]'
+Slack : 0.391
+TNS   : 0.000
+
+Type  : Slow Model Minimum Pulse Width 'CLOCK_50_I'
+Slack : -1.380
+TNS   : -41.380
+
+Type  : Slow Model Minimum Pulse Width 'UART_clock_inst|altpll_component|pll|clk[0]'
+Slack : 7.680
+TNS   : 0.000
+
+Type  : Slow Model Minimum Pulse Width 'CLOCK_27_I'
+Slack : 18.518
+TNS   : 0.000
+
+Type  : Fast Model Setup 'CLOCK_50_I'
+Slack : -0.551
+TNS   : -13.402
+
+Type  : Fast Model Setup 'UART_clock_inst|altpll_component|pll|clk[0]'
+Slack : 15.828
+TNS   : 0.000
+
+Type  : Fast Model Hold 'CLOCK_50_I'
+Slack : 0.215
+TNS   : 0.000
+
+Type  : Fast Model Hold 'UART_clock_inst|altpll_component|pll|clk[0]'
+Slack : 0.215
+TNS   : 0.000
+
+Type  : Fast Model Minimum Pulse Width 'CLOCK_50_I'
+Slack : -1.380
+TNS   : -41.380
+
+Type  : Fast Model Minimum Pulse Width 'UART_clock_inst|altpll_component|pll|clk[0]'
+Slack : 7.680
+TNS   : 0.000
+
+Type  : Fast Model Minimum Pulse Width 'CLOCK_27_I'
+Slack : 18.518
+TNS   : 0.000
+
+------------------------------------------------------------

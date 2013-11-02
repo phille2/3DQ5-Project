@@ -1,0 +1,46 @@
+m255
+K3
+13
+cModel Technology
+Z0 d/media/DISK_IMG/3DQ5/Lab 5/Lab 5 Actual/exercise1
+vSRAM_BIST
+!s100 BD]c7jD?7Ri<0E8cMG0lC0
+I3fEMa]T0@BjzDLj?7o;8V3
+V`JN@9S9cnhjKRR_L]QIcM3
+!s105 SRAM_BIST_v_unit
+S1
+Z1 d/media/DISK_IMG/3DQ5/Lab 5/Lab 5 Actual/exercise1
+Z2 w1382145900
+Z3 8SRAM_BIST.v
+Z4 FSRAM_BIST.v
+L0 15
+Z5 OV;L;10.0d;49
+Z6 !s108 1382146530.430786
+Z7 !s107 define_state.h|SRAM_BIST.v|
+Z8 !s90 -reportprogress|300|-sv|-work|rtl_work|SRAM_BIST.v|
+!s101 -O0
+Z9 o-sv -work rtl_work -O0
+n@s@r@a@m_@b@i@s@t
+XSRAM_BIST_v_unit
+DXx6 sv_std 3 std 0 22 :CP]PHbGOHGT_H:3KF`8L2
+VniP5<_<X3NR^W:>Un1c]k1
+r1
+!s85 0
+31
+!s100 d]9MBk:[Y2BX@WmBk:bJ>3
+IniP5<_<X3NR^W:>Un1c]k1
+!i103 1
+S1
+R1
+R2
+R3
+R4
+Fdefine_state.h
+L1 5
+R5
+R6
+R7
+R8
+!s101 -O0
+R9
+n@s@r@a@m_@b@i@s@t_v_unit

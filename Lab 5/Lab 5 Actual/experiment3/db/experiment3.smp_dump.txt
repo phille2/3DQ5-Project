@@ -1,0 +1,27 @@
+
+State Machine - |experiment3|TX_state
+Name TX_state~9 TX_state~8 
+TX_state.S_TX_IDLE 0 0 
+TX_state.S_TX_START_TRANSMIT 0 1 
+TX_state.S_TX_TRANSMIT_DATA 1 0 
+TX_state.S_TX_WAIT_TRANSMIT 1 1 
+
+State Machine - |experiment3|RX_state
+Name RX_state~8 RX_state~7 
+RX_state.S_RX_IDLE 0 0 
+RX_state.S_RX_START_RECEIVE 0 1 
+RX_state.S_RX_WRITE_RECEIVED_DATA 1 0 
+
+State Machine - |experiment3|UART_Transmit_Controller:UART_TX|TXC_state
+Name TXC_state~9 TXC_state~8 
+TXC_state.S_TXC_IDLE 0 0 
+TXC_state.S_TXC_START_BIT 0 1 
+TXC_state.S_TXC_DATA 1 0 
+TXC_state.S_TXC_STOP_BIT 1 1 
+
+State Machine - |experiment3|UART_Receive_Controller:UART_RX|RXC_state
+Name RXC_state~9 RXC_state~8 
+RXC_state.S_RXC_IDLE 0 0 
+RXC_state.S_RXC_SYNC 0 1 
+RXC_state.S_RXC_ASSEMBLE_DATA 1 0 
+RXC_state.S_RXC_STOP_BIT 1 1 

@@ -1,0 +1,191 @@
+m255
+K3
+13
+cModel Technology
+Z0 dJ:\3DQ5\Lab 5\Lab 5 Actual\experiment1
+vexperiment1
+Z1 DXx6 sv_std 3 std 0 22 F[19LRNL:5;XmIFh[XOPn1
+Z2 IU]O_UUc6l9C4n54VXMDoa1
+Z3 V<71jRnoK:[RCKaQiUo6[d0
+S1
+Z4 dJ:\3DQ5\Lab 5\Lab 5 Actual\experiment1
+Z5 w1192200120
+Z6 8experiment1.v
+Z7 Fexperiment1.v
+L0 14
+Z8 OV;L;10.1d;51
+r1
+31
+Z9 o-sv -svinputport=var -work rtl_work -O0
+!i10b 1
+Z10 !s100 Yk5;9PD5gQ:Z9ag1`bWOP2
+Z11 !s105 experiment1_v_unit
+!s85 0
+Z12 !s108 1381972217.112000
+Z13 !s107 experiment1.v|
+Z14 !s90 -reportprogress|300|-sv|-svinputport=var|-work|rtl_work|experiment1.v|
+!s101 -O0
+vPB_Controller
+R1
+Z15 If9:oiET7RV1EXbga`nBM[2
+Z16 VbkQg5OY7K?YWT1G8j2Pbi0
+S1
+R4
+Z17 w1160751256
+Z18 8PB_Controller.v
+Z19 FPB_Controller.v
+L0 12
+R8
+r1
+31
+R9
+Z20 n@p@b_@controller
+Z21 !s100 QOHXJe@9k>O@fcYb@]MRk3
+Z22 !s105 PB_Controller_v_unit
+Z23 !s108 1381972215.463000
+Z24 !s107 PB_Controller.v|
+Z25 !s90 -reportprogress|300|-sv|-svinputport=var|-work|rtl_work|PB_Controller.v|
+!i10b 1
+!s85 0
+!s101 -O0
+vSRAM_BIST
+R1
+Z26 DXx4 work 16 SRAM_BIST_v_unit 0 22 ELUWgGW^PoD4UKb4>D=JS2
+Z27 Vb<lH<:ETfiOkmK@JZK3?e1
+r1
+31
+Z28 IB[eQfBFBWIS@2[_6On8Cb3
+S1
+R4
+Z29 w1381877286
+Z30 8SRAM_BIST.v
+Z31 FSRAM_BIST.v
+L0 15
+R8
+Z32 !s108 1381972213.886000
+Z33 !s107 define_state.h|SRAM_BIST.v|
+Z34 !s90 -reportprogress|300|-sv|-svinputport=var|-work|rtl_work|SRAM_BIST.v|
+R9
+Z35 n@s@r@a@m_@b@i@s@t
+Z36 !s100 1XON2Y]jFbQPndOD]87SP0
+Z37 !s105 SRAM_BIST_v_unit
+!s85 0
+!i10b 1
+!s101 -O0
+XSRAM_BIST_v_unit
+R1
+Z38 VELUWgGW^PoD4UKb4>D=JS2
+r1
+31
+Z39 IELUWgGW^PoD4UKb4>D=JS2
+S1
+R4
+R29
+R30
+R31
+Z40 Fdefine_state.h
+L1 5
+R8
+R32
+R33
+R34
+R9
+Z41 n@s@r@a@m_@b@i@s@t_v_unit
+Z42 !s100 ocn6dIo3e48Q7dG4hZ<^22
+!s85 0
+!i10b 1
+!i103 1
+!s101 -O0
+vSRAM_Controller
+R1
+Z43 Icl5EgWQ6d;>FO^dPV^?Me1
+Z44 V5XU>4eb<gERPb=4VPDB<`1
+S1
+R4
+Z45 w1346772194
+Z46 8SRAM_Controller.v
+Z47 FSRAM_Controller.v
+L0 14
+R8
+r1
+31
+R9
+Z48 n@s@r@a@m_@controller
+Z49 !s100 FjR54bYY8`[CY_[ZZa2Oi1
+Z50 !s105 SRAM_Controller_v_unit
+Z51 !s108 1381972216.054000
+Z52 !s107 SRAM_Controller.v|
+Z53 !s90 -reportprogress|300|-sv|-svinputport=var|-work|rtl_work|+define+SIMULATION|SRAM_Controller.v|
+Z54 !s92 -sv -svinputport=var -work rtl_work +define+SIMULATION -O0
+!i10b 1
+!s85 0
+!s101 -O0
+vtb_experiment1
+R1
+DXx4 work 21 tb_experiment1_v_unit 0 22 HzHPUSaMc;3S`2c6XIm=40
+Vc5kFCQVXn[f`?=Me[X==S0
+r1
+!s85 0
+31
+!i10b 1
+!s100 MU]aPSdZ`B_Q4Xnn<`Ug`1
+IU^U6=:cWGhB`_IUC[4AJ;3
+!s105 tb_experiment1_v_unit
+S1
+R4
+Z55 w1192209162
+Z56 8tb_experiment1.v
+Z57 Ftb_experiment1.v
+L0 16
+R8
+Z58 !s108 1381972217.484000
+Z59 !s107 define_state.h|tb_experiment1.v|
+Z60 !s90 -reportprogress|300|-sv|-svinputport=var|-work|rtl_work|tb_experiment1.v|
+!s101 -O0
+R9
+Xtb_experiment1_v_unit
+R1
+VHzHPUSaMc;3S`2c6XIm=40
+r1
+!s85 0
+31
+!i10b 1
+!s100 =EnoS>bL_iRGkS?eF:Ejc1
+IHzHPUSaMc;3S`2c6XIm=40
+!i103 1
+S1
+R4
+R55
+R56
+R57
+R40
+L1 5
+R8
+R58
+R59
+R60
+!s101 -O0
+R9
+vtb_SRAM_Emulator
+R1
+Z61 IdgE6L`zLW^P<fY;YEa]B@2
+Z62 VNkgVPB?UIlEH1V^fa`:cl2
+S1
+R4
+Z63 w1160945794
+Z64 8tb_SRAM_Emulator.v
+Z65 Ftb_SRAM_Emulator.v
+L0 13
+R8
+r1
+31
+R9
+Z66 ntb_@s@r@a@m_@emulator
+Z67 !s100 _;@hWjeDo7i?Zl3:CdfQ72
+Z68 !s105 tb_SRAM_Emulator_v_unit
+Z69 !s108 1381972216.497000
+Z70 !s107 tb_SRAM_Emulator.v|
+Z71 !s90 -reportprogress|300|-sv|-svinputport=var|-work|rtl_work|tb_SRAM_Emulator.v|
+!i10b 1
+!s85 0
+!s101 -O0

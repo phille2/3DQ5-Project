@@ -1,0 +1,10 @@
+
+State Machine - |exercise1|SRAM_BIST:BIST_unit|BIST_state
+Name BIST_state~13 BIST_state~12 BIST_state~11 
+BIST_state.S_IDLE 0 0 0 
+BIST_state.S_DELAY_1 0 0 1 
+BIST_state.S_DELAY_2 0 1 0 
+BIST_state.S_WRITE_CYCLE 0 1 1 
+BIST_state.S_READ_CYCLE 1 0 0 
+BIST_state.S_DELAY_3 1 0 1 
+BIST_state.S_DELAY_4 1 1 0 

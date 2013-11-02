@@ -1,0 +1,18 @@
+
+State Machine - |experiment2a|state
+Name state~22 state~21 state~20 state~19 
+state.S_IDLE 0 0 0 0 
+state.S_NEW_PIXEL_ROW_DELAY_1 1 0 1 1 
+state.S_NEW_PIXEL_ROW_DELAY_2 1 0 0 0 
+state.S_NEW_PIXEL_ROW_DELAY_3 1 0 0 1 
+state.S_NEW_PIXEL_ROW_DELAY_4 1 1 1 0 
+state.S_NEW_PIXEL_ROW_DELAY_5 1 1 1 1 
+state.S_FETCH_PIXEL_DATA_0 1 1 0 0 
+state.S_FETCH_PIXEL_DATA_1 1 1 0 1 
+state.S_FETCH_PIXEL_DATA_2 0 0 1 0 
+state.S_FETCH_PIXEL_DATA_3 0 0 1 1 
+state.S_WAIT_NEW_PIXEL_ROW 1 0 1 0 
+state.S_FILL_SRAM_0 0 0 0 1 
+state.S_FILL_SRAM_1 0 1 1 0 
+state.S_FILL_SRAM_2 0 1 1 1 
+state.S_FINISH_FILL_SRAM 0 1 0 0 
