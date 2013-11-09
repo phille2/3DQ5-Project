@@ -1,11 +1,28 @@
 `ifndef DEFINE_STATE
 
 // This defines the states
-typedef enum logic [1:0] {
+
+typedef enum logic [4:0] {
 	S_IDLE,
-	S_ENABLE_UART_RX,
-	S_WAIT_UART_RX
-} top_state_type;
+	S_GET_ADDRESS_FOR_REGISTERS_0,
+	S_GET_ADDRESS_FOR_REGISTERS_1,
+	S_GET_ADDRESS_FOR_REGISTERS_2,
+	S_FILL_REGISTERS_0,
+	S_FILL_REGISTERS_1,
+	S_FILL_REGISTERS_2,
+	S_FILL_REGISTERS_3,
+	S_SET_EVEN_YUV,
+	S_RED_0,
+	S_RED_1,
+	S_GREEN_0,
+	S_GREEN_1,
+	S_BLUE_0,
+	S_RED_ODD_0,
+	S_RED_ODD_1,
+	S_GREEN_ODD_0,
+	S_GREEN_ODD_1,
+	S_BLUE_ODD_0
+} state_type;
 
 typedef enum logic [1:0] {
 	S_RXC_IDLE,

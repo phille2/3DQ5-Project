@@ -14,7 +14,7 @@ module tb_SRAM_Emulator (
 	input logic Clock_50,
 	input logic Resetn,
 	
-	inout wire [15:0] SRAM_data_io,
+	input wire [15:0] SRAM_data_io,
 	input logic [17:0] SRAM_address,
 	input logic SRAM_UB_N,
 	input logic SRAM_LB_N,
