@@ -92,8 +92,8 @@ project uut (
 		.SWITCH_I(Switches),
 		.PUSH_BUTTON_I(Push_buttons),		
 
-	//	.SEVEN_SEGMENT_N_O(seven_segment_n),
-		//.LED_GREEN_O(LED_Green),
+		.SEVEN_SEGMENT_N_O(seven_segment_n),
+		.LED_GREEN_O(LED_Green),
 
 		.VGA_CLOCK_O(VGA_clock),
 		.VGA_HSYNC_O(VGA_Hsync),
@@ -110,10 +110,10 @@ project uut (
 		.SRAM_LB_N_O(SRAM_LB_N),
 		.SRAM_WE_N_O(SRAM_WE_N),
 		.SRAM_CE_N_O(SRAM_CE_N),
-		.SRAM_OE_N_O(SRAM_OE_N)
+		.SRAM_OE_N_O(SRAM_OE_N),
 		
-		//.UART_RX_I(1'b1),
-		//.UART_TX_O()
+		.UART_RX_I(1'b1),
+		.UART_TX_O()
 );
 
 // The emulator for the external SRAM during simulation
