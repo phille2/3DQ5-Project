@@ -184,8 +184,6 @@ always_ff @ (posedge CLOCK_50_I or negedge resetn) begin
 	end else begin
 		case (state)
 		S_IDLE: begin
-				//Need edge cases after this, for now just general
-				//counter should be equal to 0 later
 				SRAM_address <= 18'd0;
 				counter <= 18'd0;
 				state <= S_GET_ADDRESS_FOR_REGISTERS_0;
@@ -207,7 +205,7 @@ always_ff @ (posedge CLOCK_50_I or negedge resetn) begin
 			SRAM_address <= V_OFFSET;
 			state <= S_FILL_REGISTERS_0;							
 		end
-		S_FILL_REGISTERS_0: begin
+		S_FILL_REGISTERS_0: begin //beginning edge case
 			//set U0U2 into registers
 			RegU[0] <= {24'd0, SRAM_read_data[15:8]};
 			RegU[1] <= {24'd0, SRAM_read_data[15:8]};
