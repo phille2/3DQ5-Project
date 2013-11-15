@@ -60,6 +60,8 @@ logic [15:0] SRAM_write_data;
 logic SRAM_we_n;
 logic [15:0] SRAM_read_data;
 logic SRAM_ready;
+logic begflag;
+logic [1:0] endrepeat; 
 
 //registers for FIR filter, where RegU[6] is Ru[j/2 + 4] and RegU[7] is Ru'[j]
 logic [31:0] RegU [5:0];
@@ -196,6 +198,8 @@ always_ff @ (posedge CLOCK_50_I or negedge resetn) begin
 		SRAM_we_n <= 1'b1;
 		SRAM_write_data <= 16'd0;
 		SRAM_address <= 18'd0;
+		begflag <= 1'b0;
+		endcount <=2'b0';
 		
 	end else begin
 		case (state)
@@ -207,18 +211,18 @@ always_ff @ (posedge CLOCK_50_I or negedge resetn) begin
 				state <= S_M1_WAIT;
 			end
 		end
-
+//not needed, just in case
 		S_WAIT: begin
 			 
 			state <= S_M1_START_ROW;
 			
-		
 		end
-		
+///
 		S_Begin0: begin
 			SRAM_we_n <= 1'b1;
 			SRAM_address <= U_count;
 			U_count <= U_count + 1'b1; 
+			col_count <= col_count + 1'b1; 
 			state<= S_Begin1;
 		end
 		
@@ -247,6 +251,7 @@ always_ff @ (posedge CLOCK_50_I or negedge resetn) begin
 		S_Begin4: begin
 			SRAM_address <= Y_count;
 			U_count <= U_count + 1'b1; 
+			col_count <= col_count + 1'b1;
 			RegU[4] <= SRAM_read_data[15:8];
 			RegU[5] <= SRAM_read_data[7:0];
 			
@@ -277,8 +282,6 @@ always_ff @ (posedge CLOCK_50_I or negedge resetn) begin
 			state<=S_Begin8;
 		end
 		S_Begin8: begin
-				
-		
 			RegU[0] <= RegU[1];
 			RegU[1] <= RegU[2];
 			RegU[2] <= RegU[3];
@@ -350,13 +353,20 @@ always_ff @ (posedge CLOCK_50_I or negedge resetn) begin
 			RegV[3] <= RegV[4];
 			RegV[4] <= RegV[5];
 			RegV[5] <= V_buf;
-			state<=S_Begin15; 		
+			state<=S_Begin15; 	
+			if(col_count == 7'd79)begin
+				
+				col_count <=  18'd0;
+				state <= S_End0;
+			end
+			
+			
 		end
 		S_Begin15: begin
 		
-		//idle
-		RGB_count <= RGB_count + 1'b1; 
-		state<=S_Begin16
+			//idle
+			RGB_count <= RGB_count + 1'b1; 
+			state<=S_Begin16
 		end
 		S_Begin16: begin
 			SRAM_address <= RGB_count; 
@@ -378,6 +388,7 @@ always_ff @ (posedge CLOCK_50_I or negedge resetn) begin
 		S_Begin18: begin
 			
 			U_count <= U_count + 1'b1;
+			col_count <= col_count + 1'b1;
 			SRAM_we_n <= 1'b0;
 			SRAM_write_data <= {Green[7:0],Blue[7:0]};
 			state<= S_Begin19; 
@@ -392,26 +403,144 @@ always_ff @ (posedge CLOCK_50_I or negedge resetn) begin
 		S_Begin20: begin
 			SRAM_address<=V_count;
 			Y_count <= Y_count + 1'b1;
-			state<=S_Begin21;
+			state<=S_Begin21; 
+			//begflag<=1'b1;
+		end
+		S_Begin21: begin
+			RGB_count <= RGB_count + 1'b1; 
+			state<=S_Begin22		
+		end
+		S_Begin22: begin
+			SRAM_address <= RGB_count; 
+			RGB_count <= RGB_count + 1'b1; 
+			RegU[0] <= RegU[1];
+			RegU[1] <= RegU[2];
+			RegU[2] <= RegU[3];
+			RegU[3] <= RegU[4];
+			RegU[4] <= RegU[5];
+			RegU[5] <= SRAM_read_data[15:8];
+			U_buf <= SRAM_read_data[7:0];
+			SRAM_we_n <= 1'b0;
+			SRAM_write_data <= {Red[7:0],Green[7:0]};
+			state<=S_Begin23; 
+		
+		end
+		S_Begin23: begin
+			SRAM_address <= RGB_count; 
+			RGB_count <= RGB_count + 1'b1; 
+			RegV[0] <= RegV[1];
+			RegV[1] <= RegV[2];
+			RegV[2] <= RegV[3];
+			RegV[3] <= RegV[4];
+			RegV[4] <= RegV[5];
+			RegV[5] <= SRAM_read_data[15:8];
+			V_buf <= SRAM_read_data[7:0];
+			SRAM_we_n <= 1'b0;
+			SRAM_write_data <= {Blue[7:0],Red[7:0]};
+			state<=S_Begin24;
+			
+		end
+		
+		S_Begin24: begin:
+		
+			Y_count <= Y_count + 1'b1;
+			SRAM_we_n <= 1'b0;
+			SRAM_write_data <= {Green[7:0],Blue[7:0]};
+			state<=S_Begin13;
+		end 
+		S_End0: begin
+			SRAM_address <= Y_count; 
+			SRAM_we_n <= 1'b1;
+			RGB_count <= RGB_count + 1'b1; 
+			state<=S_End1; 
+		end
+		
+		S_End1: begin
+			SRAM_address <= RGB_count; 
+			SRAM_we_n <= 1'b0;
+			SRAM_write_data <= {Red[7:0],Green[7:0]};
+			RGB_count <= RGB_count + 1'b1; 
+			state <= S_End2; 		
+		end
+		S_End2: begin
+			SRAM_we_n <= 1'b0;
+			SRAM_address <= RGB_count; 
+			SRAM_write_data <= {Blue[7:0],Red[7:0]};
+			RGB_count <= RGB_count + 1'b1; 
+			state <= S_End3; 		
+		end
+		S_End3: begin
+			SRAM_we_n <= 1'b0;
+			SRAM_address <= RGB_count; 
+			SRAM_write_data <= {Green[7:0],Blue[7:0]};
+			////get ys
+			RegY[0] <= SRAM_read_data[15:8];
+			RegY[1] <= SRAM_read_data[7:0];		
+			state<=S_End4;
+		end
+		S_End4: begin
+			SRAM_we_n <= 1'b1;
+			state <=S_End5;
+		end
+		S_End5: begin
+			state<=S_End6;
+			Y_count <= Y_count + 1'b1;
+		end
+		S_End6: begin
+			SRAM_address <= Y_count; 
+			RGB_count <= RGB_count + 1'b1; 
+			state<=S_End7;
+		end
+		S_End7: begin
+			SRAM_address <=RGB_count;
+			RGB_count <= RGB_count + 1'b1; 
+			SRAM_we_n <= 1'b0;
+			SRAM_write_data <= {Red[7:0],Green[7:0]};
+			RegU[0] <= RegU[1];
+			RegU[1] <= RegU[2];
+			RegU[2] <= RegU[3];
+			RegU[3] <= RegU[4];
+			RegU[4] <= RegU[5];
+			RegV[0] <= RegV[1];
+			RegV[1] <= RegV[2];
+			RegV[2] <= RegV[3];
+			RegV[3] <= RegV[4];
+			RegV[4] <= RegV[5];
+			endrepeat <= endrepeat +1'b1; 
+			state<=S_End8;
+			
+		end
+		S_End8: begin
+			SRAM_address <=RGB_count;
+			RGB_count <= RGB_count + 1'b1; 
+			SRAM_we_n <= 1'b0;
+			SRAM_write_data <= {Blue[7:0],Red[7:0]};	
+			state<=S_End9;
+		end
+		S_End9: begin
+			SRAM_address <=RGB_count;
+			SRAM_we_n <= 1'b0;
+			SRAM_write_data <= {Green[7:0],Blue[7:0]};
+			RegY[0] <= SRAM_read_data[15:8];
+			RegY[1] <= SRAM_read_data[7:0];		
+			state<=S_End10;
+			
+		end
+		S_End10: begin
+			SRAM_we_n <= 1'b1;
+			state<=S_End0;
+			if (endrepeat == 2'd3) begin
+				lin_count = lin_count + 1'b1; 
+				if (lin_count == 8'd239 ) begin
+					state<=S_Idle;
+				end
+				state<=S_Begin0; 
+				U_count <= U_count + 1'b1; 
+				col_count <= col_count + 1'b1; 
 				
+			end
+			
 		end
-		S_Begin21: begin
-			SRAM_address<=Y_count;
-			RGB_count <= RGB_count+ 1'b1; 
-			state<=S_Begin22; 
-		
-		end
-		S_Begin21: begin
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 		
 		default: state <= S_IDLE;
 		endcase
@@ -431,13 +560,10 @@ always_comb begin
 		Mult3_op_2 <= RegU[2] + RegU[3]; 
 		Ueven <= Reg[2]; 	
 	end
-	if (state == S_Begin6) begin
-		Uodd <= ((Mult_result-Mult2_result+Mult3_result+7'd128)/8'd256);
-	end
 	///
 	///state 5 or 13
 	////
-	if (state == S_Begin7 || state == S_Begin13||state<=S_Begin19) begin
+	if (state == S_Begin7 || state == S_Begin13||state==S_Begin19||state==S_End4) begin
 		Mult_op_1 <= 32'd21;
 		Mult_op_2 <= RegV[0] + RegV[5]; 
 		Mult2_op_1 <= 32'd52;
@@ -445,8 +571,9 @@ always_comb begin
 		Mult3_op_1 <= 32'd159
 		Mult3_op_2 <= RegV[2] + RegV[3]; 
 		Veven <= Reg[2]; 	
+		Uodd <= ((Mult_result-Mult2_result+Mult3_result+7'd128)/8'd256);
 	end
-	if (state == S_Begin8|| state == S_Begin14||state<=S_Begin20) begin
+	if (state == S_Begin8|| state == S_Begin14||state==S_Begin20||state==S_End5) begin
 	
 		Mult_op_1 <= 32'd72684;
 		Mult_op_2 <= RegY[0] - 32'd16;
@@ -457,7 +584,7 @@ always_comb begin
 		Vodd <= ((Mult_result-Mult2_result+Mult3_result+7'd128)/8'd256);
 	end
 	
-	if (state == S_Begin9||state==S_Begin15||state<=S_Begin21) begin
+	if (state == S_Begin9||state==S_Begin15||state==S_Begin21||state==S_End0||state==S_End6) begin
 		Mult2_op_1 <= 32'd25624;
 		Mult2_op_2 <= Ueven - 32'd128; 
 		Mult3_op_1 <= 32'd53281;
@@ -467,7 +594,7 @@ always_comb begin
 	
 	end
 	
-	if (state == S_Begin10|| state<=S_Begin16) begin
+	if (state == S_Begin10|| state==S_Begin16||state==S_Begin22||state==S_End1||state==S_End7) begin
 		Green <= ((Mult_result -Mult2_result - Mult3_result)/32'd65536);
 		Mult_op_1 <= 32'd72684;
 		Mult_op_2 <= RegY[1] - 32'd16;
@@ -477,7 +604,7 @@ always_comb begin
 		Mult3_op_2 <= Uodd - 32d'128;		
 	end
 		
-	if (state == S_Begin11||state<=S_Begin17) begin
+	if (state == S_Begin11||state==S_Begin17||state==S_Begin23||state<=S_End2||state==S_End8) begin
 		Mult2_op_1 <= 32'd25624;
 		Mult2_op_2 <= Uodd - 32'd128; 
 		Mult3_op_1 <= 32'd53281;
@@ -486,7 +613,7 @@ always_comb begin
 		Blue <= ((Mult_result + Mult3_result)/32'd65536);
 	end
 	
-	if (state == S_Begin12||state<= S_Begin18) begin
+	if (state == S_Begin12||state== S_Begin18||state==S_End3||state==S_End9) begin
 		Mult_op_1 <= 32'd21;
 		Mult_op_2 <= RegU[0] + RegU[5]; 
 		Mult2_op_1 <= 32'd52;
@@ -497,42 +624,8 @@ always_comb begin
 		Green <= ((Mult_result -Mult2_result - Mult3_result)/32'd65536);
 	end
 	
+	//////////////////////////////////////////
 	
-	
-	
-	if (state == S_RED_0 || state == S_RED_ODD_0) begin
-		Mult_op_1 = Y - 32'd16;
-		Mult_op_2 = 32'd76284;
-	end
-	else if (state == S_RED_1 || state == S_RED_ODD_1) begin
-		Mult_op_1 = V - 32'd128;
-		Mult_op_2 = 32'd104595;
-	end
-	else if (state == S_GREEN_0 || state == S_GREEN_ODD_0) begin
-		Mult_op_1 = U - 32'd128;
-		Mult_op_2 = 32'd25624;
-	end
-	else if (state == S_GREEN_1 || state == S_GREEN_ODD_1) begin
-		Mult_op_1 = V - 32'd128;
-		Mult_op_2 = 32'd53281;
-	end
-	else if (state == S_BLUE_0 || state == S_BLUE_ODD_0) begin
-		Mult_op_1 = U - 32'd128;
-		Mult_op_2 = 32'd132251;
-	end
-end
-
-always_comb begin
-	Mult2_op_1 = 0;
-	Mult2_op_2 = 0;
-	Mult3_op_1 = 0;
-	Mult3_op_2 = 0;
-	if (state == S_FILL_REGISTERS_3) begin
-		Mult2_op_1 = RegU[0];
-		Mult2_op_2 = 32'd21;
-		Mult3_op_1 = RegV[0];
-		Mult3_op_2 = 32'd21;
-	end
 end
 
 assign Mult_result_long = Mult_op_1*Mult_op_2;
