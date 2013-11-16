@@ -197,11 +197,11 @@ milestone1 Milestone1_unit (
    .Clock_50_I(CLOCK_50_I),
    .Resetn(~SWITCH_I[17]),
    .SRAM_read_data(SRAM_read_data),
-   .milestone1_enable(milestone1_enable),
+   .milestone1_enable(Milestone1_enable),
 
    
 
-   .milestone1_done(milestone1_done),
+   .milestone1_done(Milestone1_done),
    .SRAM_we_n(Milestone1_SRAM_we_n),
    .SRAM_write_data(Milestone1_SRAM_write_data),
    .SRAM_address(Milestone1_SRAM_address)

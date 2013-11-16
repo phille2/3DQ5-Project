@@ -109,13 +109,9 @@ logic begflag;
 logic [1:0] endrepeat;
 logic [2:0] endcount;
 
-//registers for FIR filter, where RegU[6] is Ru[j/2 + 4] and RegU[7] is
-Ru'[j]
 
 logic [31:0] RegU [5:0];
 
-//registers for FIR filter, where RegV[6] is Rv[j/2 + 4] and RegV[7] is
-Rv'[j]
 
 logic [31:0] RegV [5:0];
 
