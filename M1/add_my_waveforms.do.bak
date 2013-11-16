@@ -21,6 +21,3 @@ add wave -unsigned uut/Milestone1_unit/V_count
 add wave -unsigned uut/Milestone1_unit/RGB_count
 
 add wave -unsigned uut/Milestone1_unit/endcount
-add wave -unsigned uut/Milestone1_unit/col_count
-add wave -unsigned uut/Milestone1_unit/lin_count
-

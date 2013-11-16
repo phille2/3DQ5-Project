@@ -2,33 +2,32 @@ m255
 K3
 13
 cModel Technology
-Z0 dE:\Code\GitHub\3DQ5-Project\M1
+Z0 d/home/ECE/rodrigvj/3DQ5-Project-Milestone-1/M1
 vClock_100_PLL
-Z1 DXx6 sv_std 3 std 0 22 F[19LRNL:5;XmIFh[XOPn1
-Z2 IT5EJJcm>=D7W?Q>Kbcj^=3
+Z1 DXx6 sv_std 3 std 0 22 :CP]PHbGOHGT_H:3KF`8L2
+Z2 I=J0g3h`BE7>_ILk>RM^<?3
 Z3 V7YUj[KX1eVDRk8:;<_[TU3
 S1
-Z4 dE:\Code\GitHub\3DQ5-Project\M1
-Z5 w1384487004
+Z4 d/home/ECE/rodrigvj/3DQ5-Project-Milestone-1/M1
+Z5 w1384548043
 Z6 8Clock_100_PLL.v
 Z7 FClock_100_PLL.v
 L0 36
-Z8 OV;L;10.1d;51
+Z8 OV;L;10.0d;49
 r1
 31
 Z9 o-sv -svinputport=var -work rtl_work -O0
 Z10 n@clock_100_@p@l@l
-Z11 !s100 cfzDd_jkZoN2lY2;52M>^3
+Z11 !s100 fgfXjo=T=KA>Ai0SO:iZR0
 Z12 !s105 Clock_100_PLL_v_unit
-Z13 !s108 1384562155.592000
+Z13 !s108 1384569403.993529
 Z14 !s107 Clock_100_PLL.v|
 Z15 !s90 -reportprogress|300|-sv|-svinputport=var|-work|rtl_work|Clock_100_PLL.v|
-!i10b 1
 !s85 0
 !s101 -O0
 vconvert_hex_to_seven_segment
 R1
-Z16 IzL2GaRja7NJ5BPmQD9_bm2
+Z16 IJh^k5XVaI1JEzdCR:Ad:^2
 Z17 VBf[_m>fG_<7P7e;>ERPRM0
 S1
 R4
@@ -40,41 +39,43 @@ R8
 r1
 31
 R9
-Z20 !s100 FWXK1BJVfYBf4aEn]E[KD3
+Z20 !s100 AON:bmP9PliO<9?P5MJ`R3
 Z21 !s105 convert_hex_to_seven_segment_v_unit
-Z22 !s108 1384562154.533000
+Z22 !s108 1384569403.576748
 Z23 !s107 convert_hex_to_seven_segment.v|
 Z24 !s90 -reportprogress|300|-sv|-svinputport=var|-work|rtl_work|convert_hex_to_seven_segment.v|
-!i10b 1
 !s85 0
 !s101 -O0
 vmilestone1
-!i10b 1
-!s100 b<n<PmXi]5^Fl@F@gK>>f0
-InR46Q5R>bflkGh==LBBhG2
-V`JN@9S9cnhjKRR_L]QIcM3
+R1
+DXx4 work 17 milestone1_v_unit 0 22 1Bagi[eIW=`eF5NU1e@I?2
+V^9VZb1A=LO2d91Lo0cdd`0
+r1
+!s85 0
+31
+!s100 6i:TVAm@UWd;]=VlaW`bS3
+I>F1@`:`>SGX:RGNPS0dKg2
 !s105 milestone1_v_unit
 S1
 R4
-Z25 w1384562151
+Z25 w1384569310
 Z26 8milestone1.v
 Z27 Fmilestone1.v
 L0 23
 R8
-Z28 !s108 1384562156.042000
+Z28 !s108 1384569404.174049
 Z29 !s107 define_state.h|milestone1.v|
 Z30 !s90 -reportprogress|300|-sv|-svinputport=var|-work|rtl_work|milestone1.v|
 !s101 -O0
 R9
 Xmilestone1_v_unit
 R1
-V1?4jK_33QCR?n?YTC6R=^3
+V1Bagi[eIW=`eF5NU1e@I?2
 r1
 !s85 0
 31
-!i10b 1
-!s100 U2?R`P;nkE2dUES74A^KK2
-I1?4jK_33QCR?n?YTC6R=^3
+!s100 O3>P?a9gn^Z3_ezh4iVM=2
+I1Bagi[eIW=`eF5NU1e@I?2
 !i103 1
 S1
 R4
@@ -91,7 +92,7 @@ R30
 R9
 vPB_Controller
 R1
-Z32 If9:oiET7RV1EXbga`nBM[2
+Z32 IzB7bDIB8k2hU<_Gj:TM<E3
 Z33 VbkQg5OY7K?YWT1G8j2Pbi0
 S1
 R4
@@ -104,43 +105,41 @@ r1
 31
 R9
 Z36 n@p@b_@controller
-Z37 !s100 QOHXJe@9k>O@fcYb@]MRk3
+Z37 !s100 @XjdN9joC6n0NYQfE^@=f2
 Z38 !s105 PB_Controller_v_unit
-Z39 !s108 1384562154.751000
+Z39 !s108 1384569403.639096
 Z40 !s107 PB_Controller.v|
 Z41 !s90 -reportprogress|300|-sv|-svinputport=var|-work|rtl_work|PB_Controller.v|
-!i10b 1
 !s85 0
 !s101 -O0
 vproject
 R1
-Z42 DXx4 work 14 project_v_unit 0 22 8]EDFP;dn>8?JU36jRWBe1
-Z43 V;B:iba3fD8J=DIRgmk[Jj3
+Z42 DXx4 work 14 project_v_unit 0 22 B4Y9RK[2U2DKmQfZ?KTdX1
+Z43 VI_eYa9F;eWLn64;d00`B?0
 r1
 31
-Z44 Ig;Wz1jmJz6<JlU7HPbU^a3
+Z44 ImEDZn`lgfb9<iQHgT6nD;0
 S1
 R4
-Z45 w1384562017
+Z45 w1384565539
 Z46 8project.v
 Z47 Fproject.v
 L0 6
 R8
-Z48 !s108 1384562155.697000
+Z48 !s108 1384569404.053309
 Z49 !s107 define_state.h|project.v|
 Z50 !s90 -reportprogress|300|-sv|-svinputport=var|-work|rtl_work|project.v|
 R9
-Z51 !s100 mcldBRGP?5XB=K[l:]]on2
+Z51 !s100 :^aLYeA88:05>n?9J0fGE3
 Z52 !s105 project_v_unit
 !s85 0
-!i10b 1
 !s101 -O0
 Xproject_v_unit
 R1
-Z53 V8]EDFP;dn>8?JU36jRWBe1
+Z53 VB4Y9RK[2U2DKmQfZ?KTdX1
 r1
 31
-Z54 I8]EDFP;dn>8?JU36jRWBe1
+Z54 IB4Y9RK[2U2DKmQfZ?KTdX1
 S1
 R4
 R45
@@ -153,14 +152,13 @@ R48
 R49
 R50
 R9
-Z55 !s100 aBhLBGkzz2N54M>mT[d>j2
+Z55 !s100 ?8A?OaI:Wn^3UZD6o_f0W3
 !s85 0
-!i10b 1
 !i103 1
 !s101 -O0
 vSRAM_Controller
 R1
-Z56 Icl5EgWQ6d;>FO^dPV^?Me1
+Z56 Ino^RBK7MiRi0dVJKI?fNh2
 Z57 V5XU>4eb<gERPb=4VPDB<`1
 S1
 R4
@@ -173,227 +171,217 @@ r1
 31
 R9
 Z60 n@s@r@a@m_@controller
-Z61 !s100 FjR54bYY8`[CY_[ZZa2Oi1
+Z61 !s100 Z4CbHZlIP<FJNZ]7mPDmY0
 Z62 !s105 SRAM_Controller_v_unit
-Z63 !s108 1384562154.878000
+Z63 !s108 1384569403.694503
 Z64 !s107 SRAM_Controller.v|
 Z65 !s90 -reportprogress|300|-sv|-svinputport=var|-work|rtl_work|+define+SIMULATION|SRAM_Controller.v|
 Z66 !s92 -sv -svinputport=var -work rtl_work +define+SIMULATION -O0
-!i10b 1
 !s85 0
 !s101 -O0
 vtb_project
 R1
-Z67 IYBAjF:AVQ?0UbN^hEWVLV1
+Z67 I4IJ>Rk4;W6CgmTn26==O`0
 Z68 V2_0kH=[MTQ3KmI?gkjL:X3
 S1
 R4
-Z69 w1384561490
+Z69 w1384566471
 Z70 8tb_project.v
 Z71 Ftb_project.v
-L0 35
+L0 46
 R8
 r1
 31
 R9
-!i10b 1
-Z72 !s100 HaQn_FnUc>cN;0_gBb?4U1
+Z72 !s100 ]Pl;Hn:^[6TZSZccbN@IB2
 Z73 !s105 tb_project_v_unit
 !s85 0
-Z74 !s108 1384562155.886000
+Z74 !s108 1384569404.114085
 Z75 !s107 tb_project.v|
 Z76 !s90 -reportprogress|300|-sv|-svinputport=var|-work|rtl_work|tb_project.v|
 !s101 -O0
 vtb_SRAM_Emulator
 R1
-Z77 I7U:UJkode;C:?6LYD?kPQ1
+Z77 ImEA9gRbT]bWCLlnQO0g2:3
 Z78 VbAJO`:eM5@j44=2>UXZ[M1
 S1
 R4
-Z79 w1384487017
-Z80 8tb_SRAM_Emulator.v
-Z81 Ftb_SRAM_Emulator.v
+R5
+Z79 8tb_SRAM_Emulator.v
+Z80 Ftb_SRAM_Emulator.v
 L0 13
 R8
 r1
 31
 R9
-Z82 ntb_@s@r@a@m_@emulator
-Z83 !s100 ^jgGMARh1j<1RV_0[Tc9=0
-Z84 !s105 tb_SRAM_Emulator_v_unit
-Z85 !s108 1384562154.970000
-Z86 !s107 tb_SRAM_Emulator.v|
-Z87 !s90 -reportprogress|300|-sv|-svinputport=var|-work|rtl_work|tb_SRAM_Emulator.v|
-!i10b 1
+Z81 ntb_@s@r@a@m_@emulator
+Z82 !s100 e1<NmNC;8CbVn1dJYXC0M1
+Z83 !s105 tb_SRAM_Emulator_v_unit
+Z84 !s108 1384569403.752913
+Z85 !s107 tb_SRAM_Emulator.v|
+Z86 !s90 -reportprogress|300|-sv|-svinputport=var|-work|rtl_work|tb_SRAM_Emulator.v|
 !s85 0
 !s101 -O0
 vUART_Receive_Controller
 R1
-Z88 DXx4 work 30 UART_Receive_Controller_v_unit 0 22 H]o0kFY>fNF5jEMg:P4@03
-Z89 VU=O:9F<OJ5[jS^z[:R=_M3
+Z87 DXx4 work 30 UART_Receive_Controller_v_unit 0 22 ?g1XBgOJ<8CBnc<NBZ7U30
+Z88 VU=O:9F<OJ5[jS^z[:R=_M3
 r1
 31
-Z90 IUS]JDgN<bZhcI<1X_=N?j3
+Z89 IK7HdMKWj:F?A2Bd;zW4P?2
 S1
 R4
 R5
-Z91 8UART_Receive_Controller.v
-Z92 FUART_Receive_Controller.v
+Z90 8UART_Receive_Controller.v
+Z91 FUART_Receive_Controller.v
 L0 21
 R8
-Z93 !s108 1384562155.064000
-Z94 !s107 define_state.h|UART_Receive_Controller.v|
-Z95 !s90 -reportprogress|300|-sv|-svinputport=var|-work|rtl_work|+define+SIMULATION|UART_Receive_Controller.v|
+Z92 !s108 1384569403.813137
+Z93 !s107 define_state.h|UART_Receive_Controller.v|
+Z94 !s90 -reportprogress|300|-sv|-svinputport=var|-work|rtl_work|+define+SIMULATION|UART_Receive_Controller.v|
 R9
 R66
-Z96 n@u@a@r@t_@receive_@controller
-Z97 !s100 AiISmKGlk2DR4a?=c6><n0
-Z98 !s105 UART_Receive_Controller_v_unit
+Z95 n@u@a@r@t_@receive_@controller
+Z96 !s100 ZmfK@DQbV1ln3@ZcIlL]Z3
+Z97 !s105 UART_Receive_Controller_v_unit
 !s85 0
-!i10b 1
 !s101 -O0
 XUART_Receive_Controller_v_unit
 R1
-Z99 VH]o0kFY>fNF5jEMg:P4@03
+Z98 V?g1XBgOJ<8CBnc<NBZ7U30
 r1
 31
-Z100 IH]o0kFY>fNF5jEMg:P4@03
+Z99 I?g1XBgOJ<8CBnc<NBZ7U30
 S1
 R4
-Z101 w1384561570
+Z100 w1384561260
+R90
 R91
-R92
 R31
 L1 5
 R8
+R92
 R93
 R94
-R95
 R9
 R66
-Z102 n@u@a@r@t_@receive_@controller_v_unit
-Z103 !s100 f_n9XOP?bM94MMccLPN?Q1
+Z101 n@u@a@r@t_@receive_@controller_v_unit
+Z102 !s100 DlINbfBgRHh7LUPaIoj><2
 !s85 0
-!i10b 1
 !i103 1
 !s101 -O0
 vUART_SRAM_interface
 R1
-Z104 DXx4 work 26 UART_SRAM_interface_v_unit 0 22 3_i0oDObIhQo^68YL^nb[1
-Z105 VY5lf>5718Hd@;7Ha77aTF0
+Z103 DXx4 work 26 UART_SRAM_interface_v_unit 0 22 ?WWC>nCFW^0R`RFnX8?DH2
+Z104 VY5lf>5718Hd@;7Ha77aTF0
 r1
 31
-Z106 IXX2JBY8bjMeY[Oam6hDnA3
+Z105 ImMGW@?eQo`Y=_QSb<a:j`0
 S1
 R4
 R5
-Z107 8UART_SRAM_interface.v
-Z108 FUART_SRAM_interface.v
+Z106 8UART_SRAM_interface.v
+Z107 FUART_SRAM_interface.v
 L0 14
 R8
-Z109 !s108 1384562155.425000
-Z110 !s107 define_state.h|UART_SRAM_interface.v|
-Z111 !s90 -reportprogress|300|-sv|-svinputport=var|-work|rtl_work|UART_SRAM_interface.v|
+Z108 !s108 1384569403.933900
+Z109 !s107 define_state.h|UART_SRAM_interface.v|
+Z110 !s90 -reportprogress|300|-sv|-svinputport=var|-work|rtl_work|UART_SRAM_interface.v|
 R9
-Z112 n@u@a@r@t_@s@r@a@m_interface
-Z113 !s100 ^FV[AF=elDNZBZWz?P_9F3
-Z114 !s105 UART_SRAM_interface_v_unit
+Z111 n@u@a@r@t_@s@r@a@m_interface
+Z112 !s100 H^Hz5ShU`TeVzZ8>>zYnj3
+Z113 !s105 UART_SRAM_interface_v_unit
 !s85 0
-!i10b 1
 !s101 -O0
 XUART_SRAM_interface_v_unit
 R1
-Z115 V3_i0oDObIhQo^68YL^nb[1
+Z114 V?WWC>nCFW^0R`RFnX8?DH2
 r1
 31
-Z116 I3_i0oDObIhQo^68YL^nb[1
+Z115 I?WWC>nCFW^0R`RFnX8?DH2
 S1
 R4
-R101
+R100
+R106
 R107
-R108
 R31
 L1 5
 R8
+R108
 R109
 R110
-R111
 R9
-Z117 n@u@a@r@t_@s@r@a@m_interface_v_unit
-Z118 !s100 mFOH2[]Y4604NGJo;ZAY@1
+Z116 n@u@a@r@t_@s@r@a@m_interface_v_unit
+Z117 !s100 CgTEAUB0[ALYf_I6@K@fL3
 !s85 0
-!i10b 1
 !i103 1
 !s101 -O0
 vVGA_Controller
 R1
-Z119 I_1<0UBO:>UVU8nlUik@7I3
-Z120 V;HD9mML4T9E_1=05H1:nz0
+Z118 ICDJ1_nSlkFNhcMb571hQS3
+Z119 V;HD9mML4T9E_1=05H1:nz0
 S1
 R4
 R5
-Z121 8VGA_Controller.v
-Z122 FVGA_Controller.v
-Z123 FVGA_Param.h
+Z120 8VGA_Controller.v
+Z121 FVGA_Controller.v
+Z122 FVGA_Param.h
 L0 13
 R8
 r1
 31
 R9
-Z124 n@v@g@a_@controller
-Z125 !s100 ciX^NMiNE7iSn0AW>?Kio1
-Z126 !s105 VGA_Controller_v_unit
-Z127 !s108 1384562154.644000
-Z128 !s107 VGA_Param.h|VGA_Controller.v|
-Z129 !s90 -reportprogress|300|-sv|-svinputport=var|-work|rtl_work|VGA_Controller.v|
-!i10b 1
+Z123 n@v@g@a_@controller
+Z124 !s100 [mmkHRU24nL7HAlZ6oW232
+Z125 !s105 VGA_Controller_v_unit
+Z126 !s108 1384569403.597878
+Z127 !s107 VGA_Param.h|VGA_Controller.v|
+Z128 !s90 -reportprogress|300|-sv|-svinputport=var|-work|rtl_work|VGA_Controller.v|
 !s85 0
 !s101 -O0
 vVGA_SRAM_interface
 R1
-Z130 DXx4 work 25 VGA_SRAM_interface_v_unit 0 22 _UXg^X`KWIlUBDzJWjniD3
-Z131 VUD1@0GYH9MiHGK6M3QgTd3
+Z129 DXx4 work 25 VGA_SRAM_interface_v_unit 0 22 WgOU1jMa@20hI?HjX9_>03
+Z130 VUD1@0GYH9MiHGK6M3QgTd3
 r1
 31
-Z132 IF4zSUoz1TXkdJSZIb?PlA2
+Z131 IRFni<fJ[Ck8;^@do=OH1f3
 S1
 R4
 R5
-Z133 8VGA_SRAM_interface.v
-Z134 FVGA_SRAM_interface.v
+Z132 8VGA_SRAM_interface.v
+Z133 FVGA_SRAM_interface.v
 L0 14
 R8
-Z135 !s108 1384562155.215000
-Z136 !s107 define_state.h|VGA_SRAM_interface.v|
-Z137 !s90 -reportprogress|300|-sv|-svinputport=var|-work|rtl_work|VGA_SRAM_interface.v|
+Z134 !s108 1384569403.873391
+Z135 !s107 define_state.h|VGA_SRAM_interface.v|
+Z136 !s90 -reportprogress|300|-sv|-svinputport=var|-work|rtl_work|VGA_SRAM_interface.v|
 R9
-Z138 n@v@g@a_@s@r@a@m_interface
-Z139 !s100 T?A_jJiKjfQ_kd9WJYV[P3
-Z140 !s105 VGA_SRAM_interface_v_unit
+Z137 n@v@g@a_@s@r@a@m_interface
+Z138 !s100 oRA1S:TldHDXS_<EUXLHc3
+Z139 !s105 VGA_SRAM_interface_v_unit
 !s85 0
-!i10b 1
 !s101 -O0
 XVGA_SRAM_interface_v_unit
 R1
-Z141 V_UXg^X`KWIlUBDzJWjniD3
+Z140 VWgOU1jMa@20hI?HjX9_>03
 r1
 31
-Z142 I_UXg^X`KWIlUBDzJWjniD3
+Z141 IWgOU1jMa@20hI?HjX9_>03
 S1
 R4
-R101
+R100
+R132
 R133
-R134
 R31
 L1 5
 R8
+R134
 R135
 R136
-R137
 R9
-Z143 n@v@g@a_@s@r@a@m_interface_v_unit
-Z144 !s100 @WSl^>TF3_<<SJO@7Z^mN1
+Z142 n@v@g@a_@s@r@a@m_interface_v_unit
+Z143 !s100 S86ETNjhQVh2be4TXbJhP2
 !s85 0
-!i10b 1
 !i103 1
 !s101 -O0

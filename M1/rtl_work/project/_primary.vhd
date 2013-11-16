@@ -5,8 +5,6 @@ entity project is
         CLOCK_50_I      : in     vl_logic;
         PUSH_BUTTON_I   : in     vl_logic_vector(3 downto 0);
         SWITCH_I        : in     vl_logic_vector(17 downto 0);
-        milestone1_enable: out    vl_logic;
-        milestone1_done : out    vl_logic;
         SEVEN_SEGMENT_N_O: out    vl_logic;
         LED_GREEN_O     : out    vl_logic_vector(8 downto 0);
         VGA_CLOCK_O     : out    vl_logic;

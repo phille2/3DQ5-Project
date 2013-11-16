@@ -40,7 +40,7 @@ typedef enum logic [6:0] {
 	S_End8,
 	S_End9,
 	S_End10
-} milestone1_state_type;
+} state;
 
 
 typedef enum logic[2:0] {

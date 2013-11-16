@@ -12,8 +12,6 @@ module project(
        /////// pushbuttons/switches              ////////////
        input logic[3:0] PUSH_BUTTON_I,           // pushbuttons
        input logic[17:0] SWITCH_I,               // toggle switches
-       output logic milestone1_enable,
-       output logic milestone1_done,       
        /////// 7 segment displays/LEDs           ////////////
        output logic[6:0] SEVEN_SEGMENT_N_O[7:0], // 8 seven segment displays
        output logic[8:0] LED_GREEN_O,            // 9 green LEDs
@@ -116,8 +114,9 @@ VGA_SRAM_interface VGA_unit (
    .Clock(CLOCK_50_I),
    .Resetn(resetn),
    .VGA_enable(VGA_enable),
+   .VGA_adjust(SWITCH_I[0]),
 
- 
+  
 
    // For accessing SRAM
 
@@ -125,7 +124,7 @@ VGA_SRAM_interface VGA_unit (
    .SRAM_address(VGA_SRAM_address),
    .SRAM_read_data(SRAM_read_data),
 
- 
+  
 
    // To VGA pins
 
@@ -147,13 +146,13 @@ UART_SRAM_interface UART_unit(
    .Clock(CLOCK_50_I),
    .Resetn(resetn),
 
- 
+  
 
    .UART_RX_I(UART_RX_I),
    .Initialize(UART_rx_initialize),
    .Enable(UART_rx_enable),
 
- 
+  
 
    // For accessing SRAM
 
@@ -278,7 +277,7 @@ always @(posedge CLOCK_50_I or negedge resetn) begin
 
                UART_rx_initialize <= 1'b1;
                top_state <= S_M1;
-               Milestone1_enable <= 1'b1;
+               
 
            end
 
@@ -287,7 +286,7 @@ always @(posedge CLOCK_50_I or negedge resetn) begin
        
 
        S_M1: begin    
-           
+           Milestone1_enable <= 1'b1;
 
            if (Milestone1_done == 1'b1) begin
 
@@ -357,7 +356,6 @@ always_comb begin
        SRAM_address =    Milestone1_SRAM_address;
        SRAM_write_data = Milestone1_SRAM_write_data;
        SRAM_we_n = Milestone1_SRAM_we_n ;
-
    end
 
    endcase
@@ -436,3 +434,9 @@ assign
 assign LED_GREEN_O = {resetn, VGA_enable, ~SRAM_we_n, Frame_error, top_state};
 
 endmodule
+
+
+
+
+
+
