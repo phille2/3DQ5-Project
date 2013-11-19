@@ -1,0 +1,6 @@
+to do: 
+convert RGB variables to wire
+this would get rid of overlap 
+wires are stateless and are used to connect two pieces in verilog
+split RGb into always ff and always comb this way the values aren't stored over 
+make G and R odd a wire
