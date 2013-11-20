@@ -26,12 +26,14 @@ add wave -unsigned uut/Milestone1_unit/lin_count
 
 add wave -unsigned uut/Milestone1_unit/endrepeat
 
-add wave -unsigned uut/Milestone1_unit/Red
-add wave -unsigned uut/Milestone1_unit/Green
+add wave -unsigned uut/Milestone1_unit/Redeven
+add wave -unsigned uut/Milestone1_unit/Greeneven
 add wave -unsigned uut/Milestone1_unit/Blueeven
+add wave -unsigned uut/Milestone1_unit/Redodd
+add wave -unsigned uut/Milestone1_unit/Greenodd
 add wave -unsigned uut/Milestone1_unit/Blueodd
-add wave -unsigned uut/Milestone1_unit/flag
 add wave -unsigned uut/Milestone1_unit/RegU
 add wave -unsigned uut/Milestone1_unit/RegV
 add wave -unsigned uut/Milestone1_unit/RegY
+add wave uut/Milestone1_unit/state
 

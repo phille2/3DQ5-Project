@@ -29,6 +29,7 @@ typedef enum logic [6:0] {
 	S_Begin22,
 	S_Begin23,
 	S_Begin24,
+	S_Begin25,
 	S_End0,
 	S_End1,
 	S_End2,
@@ -39,7 +40,8 @@ typedef enum logic [6:0] {
 	S_End7,
 	S_End8,
 	S_End9,
-	S_End10
+	S_End10,
+	S_End11
 } milestone1_state_type;
 
 
