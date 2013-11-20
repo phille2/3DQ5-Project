@@ -50,7 +50,7 @@ parameter U_OFFSET = 18'd38400,
 
 // Values of RGB that are calculated and will be sent to the SRAM
 
-logic [31:0] Red, Green, Blueodd, Blueeven; 
+logic [31:0] Red, Green, Blueodd, Blueeven, negreg, negreg1, negreg2;
 
 logic leadIn;
 
@@ -109,8 +109,8 @@ logic [17:0] U_count;
 logic [17:0] V_count;
 logic [17:0] Y_count;
 logic [17:0] RGB_count;
-logic flag; 
-logic negreg, negreg1;
+logic flag;
+logic flag1; 
 milestone1_state_type state;
 
 
@@ -122,8 +122,9 @@ always_ff @ (posedge Clock_50_I or negedge Resetn) begin
        state <= S_IDLE;
 
        Red <= 32'd0;
-      Blueeven <= 32'd0; 
-      Blueodd <= 32'd0; 
+       Blueeven <= 32'd0; 
+       Blueodd <= 32'd0; 
+       Green <= 32'd0;
        //UV_buf_en <= 1'd1;
 
        Y_buf <= 16'd0;
@@ -146,7 +147,7 @@ always_ff @ (posedge Clock_50_I or negedge Resetn) begin
        Vodd <= 32'd0;
 
        //Y_76284 <= 32'd0;
-        flag <= 1'b0; 
+       // flag <= 1'b0; 
        ACC <= 32'd0;        
 
        RegU[0] <= 32'd0;
@@ -339,8 +340,17 @@ always_ff @ (posedge Clock_50_I or negedge Resetn) begin
            RegU[5] <= SRAM_read_data[15:8];
            U_buf <= SRAM_read_data[7:0];
            state<=S_Begin9;
+           
+           //check negatives
+           if (~flag) begin
            Red <= ((Mult_result + Mult2_result)/32'd65536);
+           end else begin
+           Red <= 32'b0; end
+           if (~flag1) begin
            Blueeven <= ((Mult_result + Mult3_result)/32'd65536);
+           end else begin
+           Blueeven <=32'b0; end
+         
 
 
 
@@ -365,7 +375,11 @@ always_ff @ (posedge Clock_50_I or negedge Resetn) begin
            RegV[4] <= RegV[5];
            RegV[5] <= SRAM_read_data[15:8];
            V_buf <= SRAM_read_data[7:0];
+           if(~flag) begin
 	   Green <= ((Mult_result -Mult2_result - Mult3_result)/32'd65536);
+	   end else begin
+	     Green <= 32'b0;end
+	     
            state<=S_Begin10;
            
           
@@ -382,8 +396,14 @@ always_ff @ (posedge Clock_50_I or negedge Resetn) begin
            SRAM_we_n <= 1'b0;
            SRAM_write_data <= {Red[7:0],Green[7:0]};
            state <= S_Begin11;
-	   Red <= ((Mult_result + Mult2_result)/32'd65536);
-           Blueodd <= ((Mult_result + Mult3_result)/32'd65536);	
+	         if (~flag) begin
+           Red <= ((Mult_result + Mult2_result)/32'd65536);
+           end else begin
+           Red <= 32'b0; end
+           if (~flag1) begin
+           Blueodd <= ((Mult_result + Mult3_result)/32'd65536);
+           end else begin
+           Blueodd <=32'b0; end	
 
        
 
@@ -396,7 +416,10 @@ always_ff @ (posedge Clock_50_I or negedge Resetn) begin
            SRAM_we_n <= 1'b0;
            SRAM_write_data <= {Blueeven[7:0],Red[7:0]};
            state <= S_Begin12;
-           Green <= ((Mult_result -Mult2_result - Mult3_result)/32'd65536);
+            if(~flag) begin
+	   Green <= ((Mult_result -Mult2_result - Mult3_result)/32'd65536);
+	   end else begin
+	     Green <= 32'b0;end
        
 
        end
@@ -404,6 +427,7 @@ always_ff @ (posedge Clock_50_I or negedge Resetn) begin
        S_Begin12: begin
 
            SRAM_address <= RGB_count;
+           
            Y_count = Y_count + 1'b1;
            SRAM_we_n <= 1'b0;
            SRAM_write_data <= {Green[7:0],Blueodd[7:0]};
@@ -442,8 +466,16 @@ always_ff @ (posedge Clock_50_I or negedge Resetn) begin
            RegV[3] <= RegV[4];
            RegV[4] <= RegV[5];
            RegV[5] <= V_buf;
-	   Red <= ((Mult_result + Mult2_result)/32'd65536);
+	          if (~flag) begin
+           Red <= ((Mult_result + Mult2_result)/32'd65536);
+           end else begin
+           Red <= 32'b0; end
+           if (~flag1) begin
            Blueeven <= ((Mult_result + Mult3_result)/32'd65536);
+           end else begin
+           Blueeven <=32'b0; end
+           
+           
            state<=S_Begin15;     
 
            if(col_count == 7'd77)begin
@@ -462,7 +494,10 @@ always_ff @ (posedge Clock_50_I or negedge Resetn) begin
        
 
            //idle
-          Green <= ((Mult_result -Mult2_result - Mult3_result)/32'd65536);  
+           if(~flag) begin
+	   Green <= ((Mult_result -Mult2_result - Mult3_result)/32'd65536);
+	   end else begin
+	     Green <= 32'b0;end
           RGB_count <= RGB_count + 1'b1;
           state<=S_Begin16;
 
@@ -476,8 +511,14 @@ always_ff @ (posedge Clock_50_I or negedge Resetn) begin
            RGB_count <= RGB_count + 1'b1;
            SRAM_we_n <= 1'b0;
            SRAM_write_data <= {Red[7:0],Green[7:0]};
+              if (~flag) begin
            Red <= ((Mult_result + Mult2_result)/32'd65536);
-           Blueodd <= ((Mult_result + Mult3_result)/32'd65536);	
+           end else begin
+           Red <= 32'b0; end
+           if (~flag1) begin
+           Blueodd <= ((Mult_result + Mult3_result)/32'd65536);
+           end else begin
+           Blueodd <=32'b0; end	
 
            state <= S_Begin17;
 
@@ -489,7 +530,10 @@ always_ff @ (posedge Clock_50_I or negedge Resetn) begin
            RGB_count <= RGB_count + 1'b1;
            SRAM_we_n <= 1'b0;
            SRAM_write_data <= {Blueeven[7:0],Red[7:0]};
-           Green <= ((Mult_result -Mult2_result - Mult3_result)/32'd65536);  
+            if(~flag) begin
+	   Green <= ((Mult_result -Mult2_result - Mult3_result)/32'd65536);
+	   end else begin
+	     Green <= 32'b0;end
            state <= S_Begin18;
 
            
@@ -499,7 +543,7 @@ always_ff @ (posedge Clock_50_I or negedge Resetn) begin
        S_Begin18: begin
 
            
-
+           SRAM_address <= RGB_count;
            U_count <= U_count + 1'b1;
            col_count <= col_count + 1'b1;
            SRAM_we_n <= 1'b0;
@@ -527,8 +571,14 @@ always_ff @ (posedge Clock_50_I or negedge Resetn) begin
 
            SRAM_address<=V_count;
            Y_count <= Y_count + 1'b1;
+            if (~flag) begin
            Red <= ((Mult_result + Mult2_result)/32'd65536);
+           end else begin
+           Red <= 32'b0; end
+           if (~flag1) begin
            Blueeven <= ((Mult_result + Mult3_result)/32'd65536);
+           end else begin
+           Blueeven <=32'b0; end
            state<=S_Begin21;
 
        end
@@ -536,7 +586,10 @@ always_ff @ (posedge Clock_50_I or negedge Resetn) begin
        S_Begin21: begin
          
            RGB_count <= RGB_count + 1'b1;
+	    if(~flag) begin
 	   Green <= ((Mult_result -Mult2_result - Mult3_result)/32'd65536);
+	   end else begin
+	     Green <= 32'b0;end
            state<=S_Begin22; 
            
            
@@ -558,8 +611,14 @@ always_ff @ (posedge Clock_50_I or negedge Resetn) begin
            U_buf <= SRAM_read_data[7:0];
            SRAM_we_n <= 1'b0;
            SRAM_write_data <= {Red[7:0],Green[7:0]};
-	   Red <= ((Mult_result + Mult2_result)/32'd65536);
-           Blueodd <= ((Mult_result + Mult3_result)/32'd65536);	
+	     if (~flag) begin
+           Red <= ((Mult_result + Mult2_result)/32'd65536);
+           end else begin
+           Red <= 32'b0; end
+           if (~flag1) begin
+           Blueodd <= ((Mult_result + Mult3_result)/32'd65536);
+           end else begin
+           Blueodd <=32'b0; end	
            state<=S_Begin23;
 
        
@@ -579,7 +638,10 @@ always_ff @ (posedge Clock_50_I or negedge Resetn) begin
            V_buf <= SRAM_read_data[7:0];
            SRAM_we_n <= 1'b0;
            SRAM_write_data <= {Blueeven[7:0],Red[7:0]};
+	   if(~flag) begin
 	   Green <= ((Mult_result -Mult2_result - Mult3_result)/32'd65536);
+	   end else begin
+	     Green <= 32'b0;end
            state<=S_Begin24;
 
            
@@ -589,11 +651,11 @@ always_ff @ (posedge Clock_50_I or negedge Resetn) begin
        
 
        S_Begin24: begin
-
+           SRAM_address <= RGB_count;
            Y_count <= Y_count + 1'b1;
            SRAM_we_n <= 1'b0;
            SRAM_write_data <= {Green[7:0],Blueodd[7:0]};
-	   Uodd <= ((Mult_result-Mult2_result+Mult3_result+7'd128)/8'd256);
+	         Uodd <= ((Mult_result-Mult2_result+Mult3_result+7'd128)/8'd256);
            Ueven <= RegU[2];
            state<=S_Begin13;
 
@@ -606,7 +668,10 @@ always_ff @ (posedge Clock_50_I or negedge Resetn) begin
            RGB_count <= RGB_count + 1'b1;
            state<=S_End1;
             
-           Green <= ((Mult_result -Mult2_result - Mult3_result)/32'd65536);
+            if(~flag) begin
+	   Green <= ((Mult_result -Mult2_result - Mult3_result)/32'd65536);
+	   end else begin
+	     Green <= 32'b0;end
 
 
        end
@@ -619,8 +684,14 @@ always_ff @ (posedge Clock_50_I or negedge Resetn) begin
            SRAM_we_n <= 1'b0;
            SRAM_write_data <= {Red[7:0],Green[7:0]};
            RGB_count <= RGB_count + 1'b1;	
-	   Red <= ((Mult_result + Mult2_result)/32'd65536);
-           Blueodd <= ((Mult_result + Mult3_result)/32'd65536);	
+	      if (~flag) begin
+           Red <= ((Mult_result + Mult2_result)/32'd65536);
+           end else begin
+           Red <= 32'b0; end
+           if (~flag1) begin
+           Blueodd <= ((Mult_result + Mult3_result)/32'd65536);
+           end else begin
+           Blueodd <=32'b0; end	
            state <= S_End2;         
 
        end
@@ -630,7 +701,10 @@ always_ff @ (posedge Clock_50_I or negedge Resetn) begin
            SRAM_we_n <= 1'b0;
            SRAM_address <= RGB_count;
            SRAM_write_data <= {Blueeven[7:0],Red[7:0]};
+	   if(~flag) begin
 	   Green <= ((Mult_result -Mult2_result - Mult3_result)/32'd65536);
+	   end else begin
+	     Green <= 32'b0;end
            RGB_count <= RGB_count + 1'b1;
            state <= S_End3;         
             
@@ -663,8 +737,14 @@ always_ff @ (posedge Clock_50_I or negedge Resetn) begin
        S_End5: begin
 
            state<=S_End6;
-	   Red <= ((Mult_result + Mult2_result)/32'd65536);
+	   if (~flag) begin
+           Red <= ((Mult_result + Mult2_result)/32'd65536);
+           end else begin
+           Red <= 32'b0; end
+           if (~flag1) begin
            Blueeven <= ((Mult_result + Mult3_result)/32'd65536);
+           end else begin
+           Blueeven <=32'b0; end
            Y_count <= Y_count + 1'b1;
 
        end
@@ -673,7 +753,10 @@ always_ff @ (posedge Clock_50_I or negedge Resetn) begin
 
            SRAM_address <= Y_count;
            RGB_count <= RGB_count + 1'b1;
+	 if(~flag) begin
 	   Green <= ((Mult_result -Mult2_result - Mult3_result)/32'd65536);
+	   end else begin
+	     Green <= 32'b0;end
            state<=S_End7;
            
            
@@ -683,13 +766,23 @@ always_ff @ (posedge Clock_50_I or negedge Resetn) begin
        end
 
        S_End7: begin
-           flag <= 1'b1;  
+    
            SRAM_address <=RGB_count;
            RGB_count <= RGB_count + 1'b1;
            SRAM_we_n <= 1'b0;
            SRAM_write_data <= {Red[7:0],Green[7:0]};
-	   Red <= ((Mult_result + Mult2_result)/32'd65536);
-           Blueodd <= ((Mult_result + Mult3_result)/32'd65536);	
+           
+           
+	      if (~flag) begin
+           Red <= ((Mult_result + Mult2_result)/32'd65536);
+           end else begin
+           Red <= 32'b0; end
+           if (~flag1) begin
+           Blueodd <= ((Mult_result + Mult3_result)/32'd65536);
+           end else begin
+           Blueodd <=32'b0; end	
+           
+           
            RegU[0] <= RegU[1];
            RegU[1] <= RegU[2];
            RegU[2] <= RegU[3];
@@ -713,7 +806,10 @@ always_ff @ (posedge Clock_50_I or negedge Resetn) begin
            RGB_count <= RGB_count + 1'b1;
            SRAM_we_n <= 1'b0;
            SRAM_write_data <= {Blueeven[7:0],Red[7:0]};   
+	   if(~flag) begin
 	   Green <= ((Mult_result -Mult2_result - Mult3_result)/32'd65536);
+	   end else begin
+	     Green <= 32'b0;end
            state<=S_End9;
 
        end
@@ -778,7 +874,7 @@ always_comb begin
   Mult_op_1 = 0;
 
   Mult_op_2 = 0;
-
+  flag = 1'b0;
        //Redodd <= 32'd0;
       // Blue <= 32'd0;
     //   Green <= 32'd0;
@@ -845,9 +941,18 @@ always_comb begin
       Mult3_op_1 = 32'd132251;
 
       Mult3_op_2 = Ueven - 32'd128;
-
-     
-
+      
+      
+      //check to see if negative, if so set to 0
+      negreg = Mult_result+Mult2_result;
+      if (negreg[31] == 1'b1) begin
+          flag = 1'b1; 
+      end
+        negreg1 = Mult_result+Mult3_result;
+      if (negreg[31] == 1'b1) begin
+          flag1 = 1'b1;
+      end
+       
   end
 
   
@@ -865,8 +970,13 @@ always_comb begin
       Mult3_op_1 = 32'd53281;
 
       Mult3_op_2 = Veven - 32'd128;
-  
-
+      //check to see if negatives
+      
+      negreg = Mult_result-Mult2_result-Mult3_result;
+      if (negreg[31] == 1'b1) begin
+          flag = 1'b1; 
+      end
+      
   end
 
   
@@ -885,7 +995,19 @@ always_comb begin
 
       Mult3_op_1 = 32'd132251;
 
-      Mult3_op_2 = Uodd - 32'd128;        
+      Mult3_op_2 = Uodd - 32'd128;     
+      
+      
+      
+      
+      negreg = Mult_result+Mult2_result;
+      if (negreg[31] == 1'b1) begin
+          flag = 1'b1; 
+      end
+        negreg1 = Mult_result+Mult3_result;
+      if (negreg[31] == 1'b1) begin
+          flag1 = 1'b1;
+      end   
 
   end
 
@@ -906,8 +1028,11 @@ always_comb begin
       Mult3_op_1 = 32'd53281;
 
       Mult3_op_2 = Vodd - 32'd128;
-
-
+      //check to see if negatives
+      negreg = Mult_result-Mult2_result-Mult3_result;
+      if (negreg[31] == 1'b1) begin
+          flag = 1'b1; 
+      end
 
 
 

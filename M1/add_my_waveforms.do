@@ -33,4 +33,5 @@ add wave -unsigned uut/Milestone1_unit/Blueodd
 add wave -unsigned uut/Milestone1_unit/flag
 add wave -unsigned uut/Milestone1_unit/RegU
 add wave -unsigned uut/Milestone1_unit/RegV
+add wave -unsigned uut/Milestone1_unit/RegY
 
