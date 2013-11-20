@@ -50,7 +50,7 @@ parameter U_OFFSET = 18'd38400,
 
 // Values of RGB that are calculated and will be sent to the SRAM
 
-logic [31:0] Red, Green, Blue;
+logic [31:0] Red, Green, Blueodd, Blueeven; 
 
 logic leadIn;
 
@@ -108,7 +108,9 @@ logic [17:0] lin_count;
 logic [17:0] U_count;
 logic [17:0] V_count;
 logic [17:0] Y_count;
-logic [18:0] RGB_count;
+logic [17:0] RGB_count;
+logic flag; 
+logic negreg, negreg1;
 milestone1_state_type state;
 
 
@@ -119,14 +121,9 @@ always_ff @ (posedge Clock_50_I or negedge Resetn) begin
 
        state <= S_IDLE;
 
-       
-
-      // Red <= 32'd0;
-
-     //  Green <= 32'd0;
-
-     //  Blue <= 32'd0;
-
+       Red <= 32'd0;
+      Blueeven <= 32'd0; 
+      Blueodd <= 32'd0; 
        //UV_buf_en <= 1'd1;
 
        Y_buf <= 16'd0;
@@ -141,15 +138,15 @@ always_ff @ (posedge Clock_50_I or negedge Resetn) begin
 
        Y <= 32'd0;
 
-     //  Ueven <= 32'd0;
+       Ueven <= 32'd0;
 
-    //   Veven <= 32'd0;
-     //  Uodd <= 32'd0;
+       Veven <= 32'd0;
+       Uodd <= 32'd0;
 
-     ///  Vodd <= 32'd0;
+       Vodd <= 32'd0;
 
        //Y_76284 <= 32'd0;
-
+        flag <= 1'b0; 
        ACC <= 32'd0;        
 
        RegU[0] <= 32'd0;
@@ -206,7 +203,7 @@ always_ff @ (posedge Clock_50_I or negedge Resetn) begin
 
        begflag <= 1'b0;
 
-       endcount <=2'b0;
+       endrepeat <=2'b0;
 
        
 
@@ -305,8 +302,8 @@ always_ff @ (posedge Clock_50_I or negedge Resetn) begin
            RegV[2] <= SRAM_read_data[15:8];
            RegV[3] <= SRAM_read_data[7:0];
            state<= S_Begin6;
-
-                   
+ 	   Uodd <= ((Mult_result-Mult2_result+Mult3_result+7'd128)/8'd256);
+           Ueven <= RegU[2];          
 
        end
 
@@ -325,7 +322,10 @@ always_ff @ (posedge Clock_50_I or negedge Resetn) begin
            SRAM_address <= Y_count;
            RegY[0] <= SRAM_read_data[15:8];
            RegY[1] <= SRAM_read_data[7:0];
+	   Veven <= RegV[2]; 
+	   Vodd <= ((Mult_result-Mult2_result+Mult3_result+7'd128)/8'd256);
            state<=S_Begin8;
+		
 
        end
 
@@ -339,6 +339,10 @@ always_ff @ (posedge Clock_50_I or negedge Resetn) begin
            RegU[5] <= SRAM_read_data[15:8];
            U_buf <= SRAM_read_data[7:0];
            state<=S_Begin9;
+           Red <= ((Mult_result + Mult2_result)/32'd65536);
+           Blueeven <= ((Mult_result + Mult3_result)/32'd65536);
+
+
 
            
 
@@ -361,8 +365,10 @@ always_ff @ (posedge Clock_50_I or negedge Resetn) begin
            RegV[4] <= RegV[5];
            RegV[5] <= SRAM_read_data[15:8];
            V_buf <= SRAM_read_data[7:0];
+	   Green <= ((Mult_result -Mult2_result - Mult3_result)/32'd65536);
            state<=S_Begin10;
-
+           
+          
        end
 
        //write the first pixel of the line RxGx
@@ -376,6 +382,8 @@ always_ff @ (posedge Clock_50_I or negedge Resetn) begin
            SRAM_we_n <= 1'b0;
            SRAM_write_data <= {Red[7:0],Green[7:0]};
            state <= S_Begin11;
+	   Red <= ((Mult_result + Mult2_result)/32'd65536);
+           Blueodd <= ((Mult_result + Mult3_result)/32'd65536);	
 
        
 
@@ -386,9 +394,9 @@ always_ff @ (posedge Clock_50_I or negedge Resetn) begin
            SRAM_address <= RGB_count;
            RGB_count <= RGB_count + 1'b1;
            SRAM_we_n <= 1'b0;
-           SRAM_write_data <= {Blue[7:0],Red[7:0]};
+           SRAM_write_data <= {Blueeven[7:0],Red[7:0]};
            state <= S_Begin12;
-
+           Green <= ((Mult_result -Mult2_result - Mult3_result)/32'd65536);
        
 
        end
@@ -398,16 +406,20 @@ always_ff @ (posedge Clock_50_I or negedge Resetn) begin
            SRAM_address <= RGB_count;
            Y_count = Y_count + 1'b1;
            SRAM_we_n <= 1'b0;
-           SRAM_write_data <= {Green[7:0],Blue[7:0]};
+           SRAM_write_data <= {Green[7:0],Blueodd[7:0]};
            state <= S_Begin13;
-
+	   Uodd <= ((Mult_result-Mult2_result+Mult3_result+7'd128)/8'd256);
+           Ueven <= RegU[2]; 
        end
 
        S_Begin13: begin
 
            SRAM_we_n <= 1'b1;
            SRAM_address <= Y_count;
+           Veven <= RegV[2]; 
+	   Vodd <= ((Mult_result-Mult2_result+Mult3_result+7'd128)/8'd256);	
            state <= S_Begin14;
+
 
        end
 
@@ -430,11 +442,11 @@ always_ff @ (posedge Clock_50_I or negedge Resetn) begin
            RegV[3] <= RegV[4];
            RegV[4] <= RegV[5];
            RegV[5] <= V_buf;
+	   Red <= ((Mult_result + Mult2_result)/32'd65536);
+           Blueeven <= ((Mult_result + Mult3_result)/32'd65536);
            state<=S_Begin15;     
 
-           if(col_count == 7'd79)begin
-
-               
+           if(col_count == 7'd77)begin
 
                col_count <=  18'd0;
 
@@ -442,9 +454,6 @@ always_ff @ (posedge Clock_50_I or negedge Resetn) begin
 
            end
 
-           
-
-           
 
        end
 
@@ -453,9 +462,9 @@ always_ff @ (posedge Clock_50_I or negedge Resetn) begin
        
 
            //idle
-
-           RGB_count <= RGB_count + 1'b1;
-           state<=S_Begin16;
+          Green <= ((Mult_result -Mult2_result - Mult3_result)/32'd65536);  
+          RGB_count <= RGB_count + 1'b1;
+          state<=S_Begin16;
 
        end
 
@@ -467,6 +476,9 @@ always_ff @ (posedge Clock_50_I or negedge Resetn) begin
            RGB_count <= RGB_count + 1'b1;
            SRAM_we_n <= 1'b0;
            SRAM_write_data <= {Red[7:0],Green[7:0]};
+           Red <= ((Mult_result + Mult2_result)/32'd65536);
+           Blueodd <= ((Mult_result + Mult3_result)/32'd65536);	
+
            state <= S_Begin17;
 
        end
@@ -476,7 +488,8 @@ always_ff @ (posedge Clock_50_I or negedge Resetn) begin
            SRAM_address <= RGB_count;
            RGB_count <= RGB_count + 1'b1;
            SRAM_we_n <= 1'b0;
-           SRAM_write_data <= {Blue[7:0],Red[7:0]};
+           SRAM_write_data <= {Blueeven[7:0],Red[7:0]};
+           Green <= ((Mult_result -Mult2_result - Mult3_result)/32'd65536);  
            state <= S_Begin18;
 
            
@@ -490,7 +503,9 @@ always_ff @ (posedge Clock_50_I or negedge Resetn) begin
            U_count <= U_count + 1'b1;
            col_count <= col_count + 1'b1;
            SRAM_we_n <= 1'b0;
-           SRAM_write_data <= {Green[7:0],Blue[7:0]};
+           SRAM_write_data <= {Green[7:0],Blueodd[7:0]};
+	   Uodd <= ((Mult_result-Mult2_result+Mult3_result+7'd128)/8'd256);
+           Ueven <= RegU[2]; 
            state<= S_Begin19;
 
                
@@ -502,6 +517,8 @@ always_ff @ (posedge Clock_50_I or negedge Resetn) begin
            SRAM_address<=U_count;
            SRAM_we_n <= 1'b1;
            V_count <= V_count + 1'b1;
+	   Veven <= RegV[2]; 
+	   Vodd <= ((Mult_result-Mult2_result+Mult3_result+7'd128)/8'd256);	
            state<=S_Begin20;
 
        end
@@ -510,17 +527,21 @@ always_ff @ (posedge Clock_50_I or negedge Resetn) begin
 
            SRAM_address<=V_count;
            Y_count <= Y_count + 1'b1;
-
+           Red <= ((Mult_result + Mult2_result)/32'd65536);
+           Blueeven <= ((Mult_result + Mult3_result)/32'd65536);
            state<=S_Begin21;
-
-           //begflag<=1'b1;
 
        end
 
        S_Begin21: begin
          
            RGB_count <= RGB_count + 1'b1;
-           state<=S_Begin22;        
+	   Green <= ((Mult_result -Mult2_result - Mult3_result)/32'd65536);
+           state<=S_Begin22; 
+           
+           
+
+       
 
        end
 
@@ -537,6 +558,8 @@ always_ff @ (posedge Clock_50_I or negedge Resetn) begin
            U_buf <= SRAM_read_data[7:0];
            SRAM_we_n <= 1'b0;
            SRAM_write_data <= {Red[7:0],Green[7:0]};
+	   Red <= ((Mult_result + Mult2_result)/32'd65536);
+           Blueodd <= ((Mult_result + Mult3_result)/32'd65536);	
            state<=S_Begin23;
 
        
@@ -555,7 +578,8 @@ always_ff @ (posedge Clock_50_I or negedge Resetn) begin
            RegV[5] <= SRAM_read_data[15:8];
            V_buf <= SRAM_read_data[7:0];
            SRAM_we_n <= 1'b0;
-           SRAM_write_data <= {Blue[7:0],Red[7:0]};
+           SRAM_write_data <= {Blueeven[7:0],Red[7:0]};
+	   Green <= ((Mult_result -Mult2_result - Mult3_result)/32'd65536);
            state<=S_Begin24;
 
            
@@ -568,7 +592,9 @@ always_ff @ (posedge Clock_50_I or negedge Resetn) begin
 
            Y_count <= Y_count + 1'b1;
            SRAM_we_n <= 1'b0;
-           SRAM_write_data <= {Green[7:0],Blue[7:0]};
+           SRAM_write_data <= {Green[7:0],Blueodd[7:0]};
+	   Uodd <= ((Mult_result-Mult2_result+Mult3_result+7'd128)/8'd256);
+           Ueven <= RegU[2];
            state<=S_Begin13;
 
        end
@@ -579,6 +605,9 @@ always_ff @ (posedge Clock_50_I or negedge Resetn) begin
            SRAM_we_n <= 1'b1;
            RGB_count <= RGB_count + 1'b1;
            state<=S_End1;
+            
+           Green <= ((Mult_result -Mult2_result - Mult3_result)/32'd65536);
+
 
        end
 
@@ -589,7 +618,9 @@ always_ff @ (posedge Clock_50_I or negedge Resetn) begin
            SRAM_address <= RGB_count;
            SRAM_we_n <= 1'b0;
            SRAM_write_data <= {Red[7:0],Green[7:0]};
-           RGB_count <= RGB_count + 1'b1;
+           RGB_count <= RGB_count + 1'b1;	
+	   Red <= ((Mult_result + Mult2_result)/32'd65536);
+           Blueodd <= ((Mult_result + Mult3_result)/32'd65536);	
            state <= S_End2;         
 
        end
@@ -598,17 +629,20 @@ always_ff @ (posedge Clock_50_I or negedge Resetn) begin
 
            SRAM_we_n <= 1'b0;
            SRAM_address <= RGB_count;
-           SRAM_write_data <= {Blue[7:0],Red[7:0]};
+           SRAM_write_data <= {Blueeven[7:0],Red[7:0]};
+	   Green <= ((Mult_result -Mult2_result - Mult3_result)/32'd65536);
            RGB_count <= RGB_count + 1'b1;
            state <= S_End3;         
-
+            
        end
 
        S_End3: begin
 
            SRAM_we_n <= 1'b0;
            SRAM_address <= RGB_count;
-           SRAM_write_data <= {Green[7:0],Blue[7:0]};
+           SRAM_write_data <= {Green[7:0],Blueodd[7:0]};
+	   Uodd <= ((Mult_result-Mult2_result+Mult3_result+7'd128)/8'd256);
+           Ueven <= RegU[2];
            ////get ys
 
            RegY[0] <= SRAM_read_data[15:8];
@@ -620,6 +654,8 @@ always_ff @ (posedge Clock_50_I or negedge Resetn) begin
        S_End4: begin
 
            SRAM_we_n <= 1'b1;
+	   Veven <= RegV[2]; 
+	   Vodd <= ((Mult_result-Mult2_result+Mult3_result+7'd128)/8'd256);	
            state <=S_End5;
 
        end
@@ -627,6 +663,8 @@ always_ff @ (posedge Clock_50_I or negedge Resetn) begin
        S_End5: begin
 
            state<=S_End6;
+	   Red <= ((Mult_result + Mult2_result)/32'd65536);
+           Blueeven <= ((Mult_result + Mult3_result)/32'd65536);
            Y_count <= Y_count + 1'b1;
 
        end
@@ -635,16 +673,23 @@ always_ff @ (posedge Clock_50_I or negedge Resetn) begin
 
            SRAM_address <= Y_count;
            RGB_count <= RGB_count + 1'b1;
+	   Green <= ((Mult_result -Mult2_result - Mult3_result)/32'd65536);
            state<=S_End7;
+           
+           
+  
+
 
        end
 
        S_End7: begin
-
+           flag <= 1'b1;  
            SRAM_address <=RGB_count;
            RGB_count <= RGB_count + 1'b1;
            SRAM_we_n <= 1'b0;
            SRAM_write_data <= {Red[7:0],Green[7:0]};
+	   Red <= ((Mult_result + Mult2_result)/32'd65536);
+           Blueodd <= ((Mult_result + Mult3_result)/32'd65536);	
            RegU[0] <= RegU[1];
            RegU[1] <= RegU[2];
            RegU[2] <= RegU[3];
@@ -667,7 +712,8 @@ always_ff @ (posedge Clock_50_I or negedge Resetn) begin
            SRAM_address <=RGB_count;
            RGB_count <= RGB_count + 1'b1;
            SRAM_we_n <= 1'b0;
-           SRAM_write_data <= {Blue[7:0],Red[7:0]};    
+           SRAM_write_data <= {Blueeven[7:0],Red[7:0]};   
+	   Green <= ((Mult_result -Mult2_result - Mult3_result)/32'd65536);
            state<=S_End9;
 
        end
@@ -676,9 +722,11 @@ always_ff @ (posedge Clock_50_I or negedge Resetn) begin
 
            SRAM_address <=RGB_count;
            SRAM_we_n <= 1'b0;
-           SRAM_write_data <= {Green[7:0],Blue[7:0]};
+           SRAM_write_data <= {Green[7:0],Blueodd[7:0]};
            RegY[0] <= SRAM_read_data[15:8];
-           RegY[1] <= SRAM_read_data[7:0];        
+           RegY[1] <= SRAM_read_data[7:0];
+	   Uodd <= ((Mult_result-Mult2_result+Mult3_result+7'd128)/8'd256);
+           Ueven <= RegU[2];        
            state<=S_End10;
 
            
@@ -688,36 +736,32 @@ always_ff @ (posedge Clock_50_I or negedge Resetn) begin
        S_End10: begin
 
            SRAM_we_n <= 1'b1;
+	   Veven <= RegV[2]; 
+	   Vodd <= ((Mult_result-Mult2_result+Mult3_result+7'd128)/8'd256);
 
            state<=S_End0;
 
            if (endrepeat == 2'd3) begin
-
+              endrepeat <= 2'b0;
                lin_count = lin_count + 1'b1;
 
-               if (lin_count == 8'd239 ) begin
+               if (lin_count == 8'd478 ) begin
 
                    state<=S_IDLE;
-
+                    SRAM_we_n <= 1'b1; 
                    milestone1_done<= 1'b1;
 
-               end
+               end else begin
 
                state<=S_Begin0;
 
                U_count <= U_count + 1'b1;
 
                col_count <= col_count + 1'b1;
-
-               
+             end
 
            end
-
-           
-
-       end
-
-       
+      end
 
        default: state <= S_IDLE;
 
@@ -726,117 +770,179 @@ always_ff @ (posedge Clock_50_I or negedge Resetn) begin
    end
 
 end
+///////////////
+
 
 always_comb begin
 
-//   Mult_op_1 = 0;
- //  Mult_op_2 = 0;
+  Mult_op_1 = 0;
 
-   
+  Mult_op_2 = 0;
 
-   if(state == S_Begin5) begin
+       //Redodd <= 32'd0;
+      // Blue <= 32'd0;
+    //   Green <= 32'd0;
 
-       Mult_op_1 <= 32'd21;
-       Mult_op_2 <= RegU[0] + RegU[5];
-       Mult2_op_1 <= 32'd52;
-       Mult2_op_2 <= RegU[1] + RegU[4];
-       Mult3_op_1 <= 32'd159;
-       Mult3_op_2 <= RegU[2] + RegU[3];
-       Ueven <= RegU[2];     
 
-   end
+  
 
-   ///
+  if(state == S_Begin5) begin
 
-   ///state 5 or 13
+      Mult_op_1 = 32'd21;
 
-   ////
+      Mult_op_2 = RegU[0] + RegU[5];
 
-   if (state == S_Begin7 || state == S_Begin13||state==S_Begin19||state==S_End4) begin
+      Mult2_op_1 = 32'd52;
 
-       Mult_op_1 <= 32'd21;
-       Mult_op_2 <= RegV[0] + RegV[5];
-       Mult2_op_1 <= 32'd52;
-       Mult2_op_2 <= RegV[1] + RegV[4];
-       Mult3_op_1 <= 32'd159;
-       Mult3_op_2 <= RegV[2] + RegV[3];
-       Veven <= RegV[2];     
-       Uodd <= ((Mult_result-Mult2_result+Mult3_result+7'd128)/8'd256);
+      Mult2_op_2 = RegU[1] + RegU[4];
 
-   end
+      Mult3_op_1 = 32'd159;
 
-   if (state == S_Begin8|| state == S_Begin14||state==S_Begin20||state==S_End5) begin
+      Mult3_op_2 = RegU[2] + RegU[3];
 
-   
+      
+     
+  end
 
-       Mult_op_1 <= 32'd72684;
-       Mult_op_2 <= RegY[0] - 32'd16;
-       Mult2_op_1 <= 32'd104595;
-       Mult2_op_2 <= Veven - 32'd128;
-       Mult3_op_1 <= 32'd132251;
-       Mult3_op_2 <= Ueven - 32'd128;
-       Vodd <= ((Mult_result-Mult2_result+Mult3_result+7'd128)/8'd256);
+  ///
 
-   end
+  ///state 5 or 13
 
-   
+  ////
 
-   if (state == S_Begin9||state==S_Begin15||state==S_Begin21||state==S_End0||state==S_End6) begin
+  if (state == S_Begin7 || state == S_Begin13||state==S_Begin19||state==S_End4) begin
 
-       Mult2_op_1 <= 32'd25624;
-       Mult2_op_2 <= Ueven - 32'd128;
-       Mult3_op_1 <= 32'd53281;
-       Mult3_op_2 <= Veven - 32'd128;
-       Red <= ((Mult_result + Mult2_result)/32'd65536);
-       Blue <= ((Mult_result + Mult3_result)/32'd65536);
+      Mult_op_1 = 32'd21;
 
-   
+      Mult_op_2 = RegV[0] + RegV[5];
 
-   end
+      Mult2_op_1 = 32'd52;
 
-   
+      Mult2_op_2 = RegV[1] + RegV[4];
 
-   if (state == S_Begin10|| state==S_Begin16||state==S_Begin22||state==S_End1||state==S_End7) begin
+      Mult3_op_1 = 32'd159;
 
-       Green <= ((Mult_result -Mult2_result - Mult3_result)/32'd65536);
-       Mult_op_1 <= 32'd72684;
-       Mult_op_2 <= RegY[1] - 32'd16;
-       Mult2_op_1 <= 32'd104595;
-       Mult2_op_2 <= Vodd - 32'd128;
-       Mult3_op_1 <= 32'd132251;
-       Mult3_op_2 <= Uodd - 32'd128;        
+      Mult3_op_2 = RegV[2] + RegV[3];
 
-   end
+          
 
-       
+     
 
-   if (state == S_Begin11||state==S_Begin17||state==S_Begin23||state<=S_End2||state==S_End8) begin
+  end
 
-       Mult2_op_1 <= 32'd25624;
-       Mult2_op_2 <= Uodd - 32'd128;
-       Mult3_op_1 <= 32'd53281;
-       Mult3_op_2 <= Vodd - 32'd128;
-       Red <= ((Mult_result + Mult2_result)/32'd65536);
-       Blue <= ((Mult_result + Mult3_result)/32'd65536);
-   end
+  if (state == S_Begin8|| state == S_Begin14||state==S_Begin20||state==S_End5) begin
 
-   
+  
 
-   if (state == S_Begin12||state== S_Begin18||state==S_End3||state==S_End9) begin
+      Mult_op_1 = 32'd72684;
 
-       Mult_op_1 <= 32'd21;
-       Mult_op_2 <= RegU[0] + RegU[5];
-       Mult2_op_1 <= 32'd52;
-       Mult2_op_2 <= RegU[1] + RegU[4];
-       Mult3_op_1 <= 32'd159;
-       Mult3_op_2 <= RegU[2] + RegU[3];
-       Ueven <= RegU[2];     
-       Green <= ((Mult_result -Mult2_result - Mult3_result)/32'd65536);
+      Mult_op_2 = RegY[0] - 32'd16;
 
-   end
+      Mult2_op_1 = 32'd104595;
 
-   
+      Mult2_op_2 = Veven - 32'd128;
 
+      Mult3_op_1 = 32'd132251;
+
+      Mult3_op_2 = Ueven - 32'd128;
+
+     
+
+  end
+
+  
+
+  if (state == S_Begin9||state==S_Begin15||state==S_Begin21||state==S_End0||state==S_End6) begin
+	
+      Mult_op_1 = 32'd72684;
+
+      Mult_op_2 = RegY[0] - 32'd16;
+
+      Mult2_op_1 = 32'd25624;
+
+      Mult2_op_2 = Ueven - 32'd128;
+
+      Mult3_op_1 = 32'd53281;
+
+      Mult3_op_2 = Veven - 32'd128;
+  
+
+  end
+
+  
+
+  if (state == S_Begin10|| state==S_Begin16||state==S_Begin22||state==S_End1||state==S_End7) begin
+
+      
+
+      Mult_op_1 = 32'd72684;
+
+      Mult_op_2 = RegY[1] - 32'd16;
+
+      Mult2_op_1 = 32'd104595;
+
+      Mult2_op_2 = Vodd - 32'd128;
+
+      Mult3_op_1 = 32'd132251;
+
+      Mult3_op_2 = Uodd - 32'd128;        
+
+  end
+
+      
+
+  if (state == S_Begin11||state==S_Begin17||state==S_Begin23||state==S_End2||state==S_End8) begin
+
+      
+
+      Mult_op_1 = 32'd72684;
+
+      Mult_op_2 = RegY[1] - 32'd16;
+
+      Mult2_op_1 = 32'd25624;
+
+      Mult2_op_2 = Uodd - 32'd128;
+
+      Mult3_op_1 = 32'd53281;
+
+      Mult3_op_2 = Vodd - 32'd128;
+
+
+
+
+
+      ///check to see ig negative
+     
+      
+     
+
+  end
+
+  
+
+  if (state == S_Begin12||state== S_Begin18||state==S_End3||state==S_End9) begin
+
+      Mult_op_1 = 32'd21;
+
+      Mult_op_2 = RegU[0] + RegU[5];
+
+      Mult2_op_1 = 32'd52;
+
+      Mult2_op_2 = RegU[1] + RegU[4];
+
+      Mult3_op_1 = 32'd159;
+
+      Mult3_op_2 = RegU[2] + RegU[3];
+
+      Ueven = RegU[2];     
+
+      Green = ((Mult_result -Mult2_result - Mult3_result)/32'd65536);
+        if (Green[31] == 1'b1) begin
+          Green = 32'b0;
+        
+      end
+
+  end
    //////////////////////////////////////////
 
    
@@ -851,6 +957,7 @@ assign Mult3_result_long = Mult3_op_1*Mult3_op_2;
 assign Mult3_result = Mult3_result_long[31:0];
 
 endmodule
+
 
 
 
