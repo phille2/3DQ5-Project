@@ -28,16 +28,17 @@ you will get false errors, so use the original testbench instead.
 
 `define FEOF 32'hFFFFFFFF
 `define MAX_MISMATCHES 10
+
 // file for output
 // this is only useful if decoding is done all the way through (e.g. milestone 1 is used)
-`define OUTPUT_FILE_NAME "panda_tb.ppm"
+`define OUTPUT_FILE_NAME "cat2_tb.ppm"
 
 // file for comparison
 // to test milestone 2 independently, use the .sram_d1 file to check the output
-`define VERIFICATION_FILE_NAME "panda.sram_d0"
+`define VERIFICATION_FILE_NAME "cat2.sram_d0"
 
 //// for milestone 1
-`define INPUT_FILE_NAME "panda.sram_d1"
+`define INPUT_FILE_NAME "cat2.sram_d1"
 
 //// for milestone 2
 //`define INPUT_FILE_NAME "motorcycle.sram_d2"
