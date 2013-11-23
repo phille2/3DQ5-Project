@@ -1,4 +1,4 @@
-Readme for CoE3DQ5 Project Software Model 2012
+Readme for CoE3DQ5 Project Software Model 2013
 Written by Jason Thong
 
 IMPORTANT: The software model provides an exact specification of what computation is
@@ -58,14 +58,14 @@ is organized as R0, G0, B0, R1, G1, B2, etc. and the pixel order goes across fir
 then down (like lab 5 experiment 2).
 
 encode_all:
-This encodes the .ppm file to a .mic4 file (McMaster Image Compression, revision 4).
+This encodes the .ppm file to a .mic7 file (McMaster Image Compression, revision 7).
 The details of encoding are provided in the project document. As a summary, first we
 do color space conversion, then downsampling of U and V, then IDCT on 8x8 blocks, and
 finally lossless decoding and quantization. You will not need to implement any of
 this in hardware.
 
 decode_m3:
-This is a reference for milestone 3 in hardware. The .mic4 file is lossless decoded
+This is a reference for milestone 3 in hardware. The .mic7 file is lossless decoded
 and dequantization is applied, the result is a .sram_d2 file. This file serves as
 the input for milestone 2 (this file is organized exactly like the SRAM, so in the
 testbench it can be used to initialize the SRAM for milestone 2). Also, this file

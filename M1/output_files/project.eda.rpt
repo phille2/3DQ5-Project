@@ -1,0 +1,152 @@
+EDA Netlist Writer report for project
+Fri Nov 22 16:14:19 2013
+Quartus II 32-bit Version 12.0 Build 263 08/02/2012 Service Pack 2 SJ Full Version
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. EDA Netlist Writer Summary
+  3. Simulation Settings
+  4. Simulation Generated Files
+  5. EDA Netlist Writer Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 1991-2012 Altera Corporation
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, Altera MegaCore Function License 
+Agreement, or other applicable license agreement, including, 
+without limitation, that your use is for the sole purpose of 
+programming logic devices manufactured by Altera and sold by 
+Altera or its authorized distributors.  Please refer to the 
+applicable agreement for further details.
+
+
+
++-------------------------------------------------------------------+
+; EDA Netlist Writer Summary                                        ;
++---------------------------+---------------------------------------+
+; EDA Netlist Writer Status ; Successful - Fri Nov 22 16:14:19 2013 ;
+; Revision Name             ; project                               ;
+; Top-level Entity Name     ; project                               ;
+; Family                    ; Cyclone II                            ;
+; Simulation Files Creation ; Successful                            ;
++---------------------------+---------------------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------+
+; Simulation Settings                                                                                                           ;
++---------------------------------------------------------------------------------------------------+---------------------------+
+; Option                                                                                            ; Setting                   ;
++---------------------------------------------------------------------------------------------------+---------------------------+
+; Tool Name                                                                                         ; ModelSim-Altera (Verilog) ;
+; Generate netlist for functional simulation only                                                   ; Off                       ;
+; Time scale                                                                                        ; 1 ps                      ;
+; Truncate long hierarchy paths                                                                     ; Off                       ;
+; Map illegal HDL characters                                                                        ; Off                       ;
+; Flatten buses into individual nodes                                                               ; Off                       ;
+; Maintain hierarchy                                                                                ; Off                       ;
+; Bring out device-wide set/reset signals as ports                                                  ; Off                       ;
+; Enable glitch filtering                                                                           ; Off                       ;
+; Do not write top level VHDL entity                                                                ; Off                       ;
+; Disable detection of setup and hold time violations in the input registers of bi-directional pins ; Off                       ;
+; Architecture name in VHDL output netlist                                                          ; structure                 ;
+; Generate third-party EDA tool command script for RTL functional simulation                        ; Off                       ;
+; Generate third-party EDA tool command script for gate-level simulation                            ; Off                       ;
++---------------------------------------------------------------------------------------------------+---------------------------+
+
+
++--------------------------------------------------------------------------------------+
+; Simulation Generated Files                                                           ;
++--------------------------------------------------------------------------------------+
+; Generated Files                                                                      ;
++--------------------------------------------------------------------------------------+
+; /home/ECE/phille2/3DQ5-Project-Milestone-1/M1/simulation/modelsim/project.vo         ;
+; /home/ECE/phille2/3DQ5-Project-Milestone-1/M1/simulation/modelsim/project_fast.vo    ;
+; /home/ECE/phille2/3DQ5-Project-Milestone-1/M1/simulation/modelsim/project_v.sdo      ;
+; /home/ECE/phille2/3DQ5-Project-Milestone-1/M1/simulation/modelsim/project_v_fast.sdo ;
++--------------------------------------------------------------------------------------+
+
+
++-----------------------------+
+; EDA Netlist Writer Messages ;
++-----------------------------+
+Info: *******************************************************************
+Info: Running Quartus II 32-bit EDA Netlist Writer
+    Info: Version 12.0 Build 263 08/02/2012 Service Pack 2 SJ Full Version
+    Info: Processing started: Fri Nov 22 16:14:17 2013
+Info: Command: quartus_eda --read_settings_files=off --write_settings_files=off project -c project
+Info (204001): Port "SEVEN_SEGMENT_N_O[0][0]" is changed into "SEVEN_SEGMENT_N_O_0_0" because it's a member of 2-D array port "SEVEN_SEGMENT_N_O"
+Info (204001): Port "SEVEN_SEGMENT_N_O[0][1]" is changed into "SEVEN_SEGMENT_N_O_0_1" because it's a member of 2-D array port "SEVEN_SEGMENT_N_O"
+Info (204001): Port "SEVEN_SEGMENT_N_O[0][2]" is changed into "SEVEN_SEGMENT_N_O_0_2" because it's a member of 2-D array port "SEVEN_SEGMENT_N_O"
+Info (204001): Port "SEVEN_SEGMENT_N_O[0][3]" is changed into "SEVEN_SEGMENT_N_O_0_3" because it's a member of 2-D array port "SEVEN_SEGMENT_N_O"
+Info (204001): Port "SEVEN_SEGMENT_N_O[0][4]" is changed into "SEVEN_SEGMENT_N_O_0_4" because it's a member of 2-D array port "SEVEN_SEGMENT_N_O"
+Info (204001): Port "SEVEN_SEGMENT_N_O[0][5]" is changed into "SEVEN_SEGMENT_N_O_0_5" because it's a member of 2-D array port "SEVEN_SEGMENT_N_O"
+Info (204001): Port "SEVEN_SEGMENT_N_O[0][6]" is changed into "SEVEN_SEGMENT_N_O_0_6" because it's a member of 2-D array port "SEVEN_SEGMENT_N_O"
+Info (204001): Port "SEVEN_SEGMENT_N_O[1][0]" is changed into "SEVEN_SEGMENT_N_O_1_0" because it's a member of 2-D array port "SEVEN_SEGMENT_N_O"
+Info (204001): Port "SEVEN_SEGMENT_N_O[1][1]" is changed into "SEVEN_SEGMENT_N_O_1_1" because it's a member of 2-D array port "SEVEN_SEGMENT_N_O"
+Info (204001): Port "SEVEN_SEGMENT_N_O[1][2]" is changed into "SEVEN_SEGMENT_N_O_1_2" because it's a member of 2-D array port "SEVEN_SEGMENT_N_O"
+Info (204001): Port "SEVEN_SEGMENT_N_O[1][3]" is changed into "SEVEN_SEGMENT_N_O_1_3" because it's a member of 2-D array port "SEVEN_SEGMENT_N_O"
+Info (204001): Port "SEVEN_SEGMENT_N_O[1][4]" is changed into "SEVEN_SEGMENT_N_O_1_4" because it's a member of 2-D array port "SEVEN_SEGMENT_N_O"
+Info (204001): Port "SEVEN_SEGMENT_N_O[1][5]" is changed into "SEVEN_SEGMENT_N_O_1_5" because it's a member of 2-D array port "SEVEN_SEGMENT_N_O"
+Info (204001): Port "SEVEN_SEGMENT_N_O[1][6]" is changed into "SEVEN_SEGMENT_N_O_1_6" because it's a member of 2-D array port "SEVEN_SEGMENT_N_O"
+Info (204001): Port "SEVEN_SEGMENT_N_O[2][0]" is changed into "SEVEN_SEGMENT_N_O_2_0" because it's a member of 2-D array port "SEVEN_SEGMENT_N_O"
+Info (204001): Port "SEVEN_SEGMENT_N_O[2][1]" is changed into "SEVEN_SEGMENT_N_O_2_1" because it's a member of 2-D array port "SEVEN_SEGMENT_N_O"
+Info (204001): Port "SEVEN_SEGMENT_N_O[2][2]" is changed into "SEVEN_SEGMENT_N_O_2_2" because it's a member of 2-D array port "SEVEN_SEGMENT_N_O"
+Info (204001): Port "SEVEN_SEGMENT_N_O[2][3]" is changed into "SEVEN_SEGMENT_N_O_2_3" because it's a member of 2-D array port "SEVEN_SEGMENT_N_O"
+Info (204001): Port "SEVEN_SEGMENT_N_O[2][4]" is changed into "SEVEN_SEGMENT_N_O_2_4" because it's a member of 2-D array port "SEVEN_SEGMENT_N_O"
+Info (204001): Port "SEVEN_SEGMENT_N_O[2][5]" is changed into "SEVEN_SEGMENT_N_O_2_5" because it's a member of 2-D array port "SEVEN_SEGMENT_N_O"
+Info (204001): Port "SEVEN_SEGMENT_N_O[2][6]" is changed into "SEVEN_SEGMENT_N_O_2_6" because it's a member of 2-D array port "SEVEN_SEGMENT_N_O"
+Info (204001): Port "SEVEN_SEGMENT_N_O[3][0]" is changed into "SEVEN_SEGMENT_N_O_3_0" because it's a member of 2-D array port "SEVEN_SEGMENT_N_O"
+Info (204001): Port "SEVEN_SEGMENT_N_O[3][1]" is changed into "SEVEN_SEGMENT_N_O_3_1" because it's a member of 2-D array port "SEVEN_SEGMENT_N_O"
+Info (204001): Port "SEVEN_SEGMENT_N_O[3][2]" is changed into "SEVEN_SEGMENT_N_O_3_2" because it's a member of 2-D array port "SEVEN_SEGMENT_N_O"
+Info (204001): Port "SEVEN_SEGMENT_N_O[3][3]" is changed into "SEVEN_SEGMENT_N_O_3_3" because it's a member of 2-D array port "SEVEN_SEGMENT_N_O"
+Info (204001): Port "SEVEN_SEGMENT_N_O[3][4]" is changed into "SEVEN_SEGMENT_N_O_3_4" because it's a member of 2-D array port "SEVEN_SEGMENT_N_O"
+Info (204001): Port "SEVEN_SEGMENT_N_O[3][5]" is changed into "SEVEN_SEGMENT_N_O_3_5" because it's a member of 2-D array port "SEVEN_SEGMENT_N_O"
+Info (204001): Port "SEVEN_SEGMENT_N_O[3][6]" is changed into "SEVEN_SEGMENT_N_O_3_6" because it's a member of 2-D array port "SEVEN_SEGMENT_N_O"
+Info (204001): Port "SEVEN_SEGMENT_N_O[4][0]" is changed into "SEVEN_SEGMENT_N_O_4_0" because it's a member of 2-D array port "SEVEN_SEGMENT_N_O"
+Info (204001): Port "SEVEN_SEGMENT_N_O[4][1]" is changed into "SEVEN_SEGMENT_N_O_4_1" because it's a member of 2-D array port "SEVEN_SEGMENT_N_O"
+Info (204001): Port "SEVEN_SEGMENT_N_O[4][2]" is changed into "SEVEN_SEGMENT_N_O_4_2" because it's a member of 2-D array port "SEVEN_SEGMENT_N_O"
+Info (204001): Port "SEVEN_SEGMENT_N_O[4][3]" is changed into "SEVEN_SEGMENT_N_O_4_3" because it's a member of 2-D array port "SEVEN_SEGMENT_N_O"
+Info (204001): Port "SEVEN_SEGMENT_N_O[4][4]" is changed into "SEVEN_SEGMENT_N_O_4_4" because it's a member of 2-D array port "SEVEN_SEGMENT_N_O"
+Info (204001): Port "SEVEN_SEGMENT_N_O[4][5]" is changed into "SEVEN_SEGMENT_N_O_4_5" because it's a member of 2-D array port "SEVEN_SEGMENT_N_O"
+Info (204001): Port "SEVEN_SEGMENT_N_O[4][6]" is changed into "SEVEN_SEGMENT_N_O_4_6" because it's a member of 2-D array port "SEVEN_SEGMENT_N_O"
+Info (204001): Port "SEVEN_SEGMENT_N_O[5][0]" is changed into "SEVEN_SEGMENT_N_O_5_0" because it's a member of 2-D array port "SEVEN_SEGMENT_N_O"
+Info (204001): Port "SEVEN_SEGMENT_N_O[5][1]" is changed into "SEVEN_SEGMENT_N_O_5_1" because it's a member of 2-D array port "SEVEN_SEGMENT_N_O"
+Info (204001): Port "SEVEN_SEGMENT_N_O[5][2]" is changed into "SEVEN_SEGMENT_N_O_5_2" because it's a member of 2-D array port "SEVEN_SEGMENT_N_O"
+Info (204001): Port "SEVEN_SEGMENT_N_O[5][3]" is changed into "SEVEN_SEGMENT_N_O_5_3" because it's a member of 2-D array port "SEVEN_SEGMENT_N_O"
+Info (204001): Port "SEVEN_SEGMENT_N_O[5][4]" is changed into "SEVEN_SEGMENT_N_O_5_4" because it's a member of 2-D array port "SEVEN_SEGMENT_N_O"
+Info (204001): Port "SEVEN_SEGMENT_N_O[5][5]" is changed into "SEVEN_SEGMENT_N_O_5_5" because it's a member of 2-D array port "SEVEN_SEGMENT_N_O"
+Info (204001): Port "SEVEN_SEGMENT_N_O[5][6]" is changed into "SEVEN_SEGMENT_N_O_5_6" because it's a member of 2-D array port "SEVEN_SEGMENT_N_O"
+Info (204001): Port "SEVEN_SEGMENT_N_O[6][0]" is changed into "SEVEN_SEGMENT_N_O_6_0" because it's a member of 2-D array port "SEVEN_SEGMENT_N_O"
+Info (204001): Port "SEVEN_SEGMENT_N_O[6][1]" is changed into "SEVEN_SEGMENT_N_O_6_1" because it's a member of 2-D array port "SEVEN_SEGMENT_N_O"
+Info (204001): Port "SEVEN_SEGMENT_N_O[6][2]" is changed into "SEVEN_SEGMENT_N_O_6_2" because it's a member of 2-D array port "SEVEN_SEGMENT_N_O"
+Info (204001): Port "SEVEN_SEGMENT_N_O[6][3]" is changed into "SEVEN_SEGMENT_N_O_6_3" because it's a member of 2-D array port "SEVEN_SEGMENT_N_O"
+Info (204001): Port "SEVEN_SEGMENT_N_O[6][4]" is changed into "SEVEN_SEGMENT_N_O_6_4" because it's a member of 2-D array port "SEVEN_SEGMENT_N_O"
+Info (204001): Port "SEVEN_SEGMENT_N_O[6][5]" is changed into "SEVEN_SEGMENT_N_O_6_5" because it's a member of 2-D array port "SEVEN_SEGMENT_N_O"
+Info (204001): Port "SEVEN_SEGMENT_N_O[6][6]" is changed into "SEVEN_SEGMENT_N_O_6_6" because it's a member of 2-D array port "SEVEN_SEGMENT_N_O"
+Info (204001): Port "SEVEN_SEGMENT_N_O[7][0]" is changed into "SEVEN_SEGMENT_N_O_7_0" because it's a member of 2-D array port "SEVEN_SEGMENT_N_O"
+Info (204001): Port "SEVEN_SEGMENT_N_O[7][1]" is changed into "SEVEN_SEGMENT_N_O_7_1" because it's a member of 2-D array port "SEVEN_SEGMENT_N_O"
+Info (204001): Port "SEVEN_SEGMENT_N_O[7][2]" is changed into "SEVEN_SEGMENT_N_O_7_2" because it's a member of 2-D array port "SEVEN_SEGMENT_N_O"
+Info (204001): Port "SEVEN_SEGMENT_N_O[7][3]" is changed into "SEVEN_SEGMENT_N_O_7_3" because it's a member of 2-D array port "SEVEN_SEGMENT_N_O"
+Info (204001): Port "SEVEN_SEGMENT_N_O[7][4]" is changed into "SEVEN_SEGMENT_N_O_7_4" because it's a member of 2-D array port "SEVEN_SEGMENT_N_O"
+Info (204001): Port "SEVEN_SEGMENT_N_O[7][5]" is changed into "SEVEN_SEGMENT_N_O_7_5" because it's a member of 2-D array port "SEVEN_SEGMENT_N_O"
+Info (204001): Port "SEVEN_SEGMENT_N_O[7][6]" is changed into "SEVEN_SEGMENT_N_O_7_6" because it's a member of 2-D array port "SEVEN_SEGMENT_N_O"
+Info (204026): Generated files "project.vo", "project_fast.vo", "project_v.sdo" and "project_v_fast.sdo" in directory "/home/ECE/phille2/3DQ5-Project-Milestone-1/M1/simulation/modelsim/" for EDA simulation tool
+Info: Quartus II 32-bit EDA Netlist Writer was successful. 0 errors, 0 warnings
+    Info: Peak virtual memory: 346 megabytes
+    Info: Processing ended: Fri Nov 22 16:14:19 2013
+    Info: Elapsed time: 00:00:02
+    Info: Total CPU time (on all processors): 00:00:02
+
+

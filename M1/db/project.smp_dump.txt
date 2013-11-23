@@ -1,0 +1,72 @@
+
+State Machine - |project|milestone1:Milestone1_unit|state
+Name state~48 state~47 state~46 state~45 state~44 state~43 
+state.S_IDLE 0 0 0 0 0 0 
+state.S_Begin0 0 0 0 0 0 1 
+state.S_Begin1 0 0 0 0 1 0 
+state.S_Begin2 0 0 0 0 1 1 
+state.S_Begin3 0 0 0 1 0 0 
+state.S_Begin4 0 0 0 1 0 1 
+state.S_Begin5 0 0 0 1 1 0 
+state.S_Begin6 0 0 0 1 1 1 
+state.S_Begin7 0 0 1 0 0 0 
+state.S_Begin8 0 0 1 0 0 1 
+state.S_Begin9 0 0 1 0 1 0 
+state.S_Begin10 0 0 1 0 1 1 
+state.S_Begin11 0 0 1 1 0 0 
+state.S_Begin12 0 0 1 1 0 1 
+state.S_Begin13 0 0 1 1 1 0 
+state.S_Begin14 0 0 1 1 1 1 
+state.S_Begin15 0 1 0 0 0 0 
+state.S_Begin16 0 1 0 0 0 1 
+state.S_Begin17 0 1 0 0 1 0 
+state.S_Begin18 0 1 0 0 1 1 
+state.S_Begin19 0 1 0 1 0 0 
+state.S_Begin20 0 1 0 1 0 1 
+state.S_Begin21 0 1 0 1 1 0 
+state.S_Begin22 0 1 0 1 1 1 
+state.S_Begin23 0 1 1 0 0 0 
+state.S_Begin24 0 1 1 0 0 1 
+state.S_Begin25 0 1 1 0 1 0 
+state.S_End0 0 1 1 0 1 1 
+state.S_End1 0 1 1 1 0 0 
+state.S_End2 0 1 1 1 0 1 
+state.S_End3 0 1 1 1 1 0 
+state.S_End4 0 1 1 1 1 1 
+state.S_End5 1 0 0 0 0 0 
+state.S_End6 1 0 0 0 0 1 
+state.S_End7 1 0 0 0 1 0 
+state.S_End8 1 0 0 0 1 1 
+state.S_End9 1 0 0 1 0 0 
+state.S_End10 1 0 0 1 0 1 
+state.S_End11 1 0 0 1 1 0 
+
+State Machine - |project|UART_SRAM_interface:UART_unit|UART_SRAM_state
+Name UART_SRAM_state~13 UART_SRAM_state~12 UART_SRAM_state~11 
+UART_SRAM_state.S_US_IDLE 0 0 0 
+UART_SRAM_state.S_US_STRIP_FILE_HEADER_1 0 0 1 
+UART_SRAM_state.S_US_STRIP_FILE_HEADER_2 0 1 0 
+UART_SRAM_state.S_US_START_FIRST_BYTE_RECEIVE 0 1 1 
+UART_SRAM_state.S_US_WRITE_FIRST_BYTE 1 0 0 
+UART_SRAM_state.S_US_START_SECOND_BYTE_RECEIVE 1 0 1 
+UART_SRAM_state.S_US_WRITE_SECOND_BYTE 1 1 0 
+
+State Machine - |project|UART_SRAM_interface:UART_unit|UART_Receive_Controller:UART_RX|RXC_state
+Name RXC_state~9 RXC_state~8 
+RXC_state.S_RXC_IDLE 0 0 
+RXC_state.S_RXC_SYNC 0 1 
+RXC_state.S_RXC_ASSEMBLE_DATA 1 0 
+RXC_state.S_RXC_STOP_BIT 1 1 
+
+State Machine - |project|VGA_SRAM_interface:VGA_unit|VGA_SRAM_state
+Name VGA_SRAM_state~17 VGA_SRAM_state~16 VGA_SRAM_state~15 VGA_SRAM_state~14 
+VGA_SRAM_state.S_VS_WAIT_NEW_PIXEL_ROW 0 0 0 0 
+VGA_SRAM_state.S_VS_NEW_PIXEL_ROW_DELAY_1 0 0 0 1 
+VGA_SRAM_state.S_VS_NEW_PIXEL_ROW_DELAY_2 0 0 1 0 
+VGA_SRAM_state.S_VS_NEW_PIXEL_ROW_DELAY_3 0 0 1 1 
+VGA_SRAM_state.S_VS_NEW_PIXEL_ROW_DELAY_4 0 1 0 0 
+VGA_SRAM_state.S_VS_NEW_PIXEL_ROW_DELAY_5 0 1 0 1 
+VGA_SRAM_state.S_VS_FETCH_PIXEL_DATA_0 0 1 1 0 
+VGA_SRAM_state.S_VS_FETCH_PIXEL_DATA_1 0 1 1 1 
+VGA_SRAM_state.S_VS_FETCH_PIXEL_DATA_2 1 0 0 0 
+VGA_SRAM_state.S_VS_FETCH_PIXEL_DATA_3 1 0 0 1 

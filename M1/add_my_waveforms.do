@@ -8,7 +8,7 @@ add wave -divider {some label for my divider}
 
 add wave uut/SRAM_we_n
 
-add wave -unsigned uut/SRAM_write_data
+add wave -hexadecimal uut/SRAM_write_data
 
 add wave -unsigned uut/SRAM_read_data
 

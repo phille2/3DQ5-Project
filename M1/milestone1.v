@@ -374,13 +374,13 @@ always_ff @ (posedge Clock_50_I or negedge Resetn) begin
             if (Redeven[15] == 1'b1) begin
               Redeven <= 16'b0;
             end
-            if (& Redeven [14:0]) begin
+            else if (| Redeven [14:8]) begin
               Redeven <= 16'd255;
             end
             if (Greeneven[15] == 1'b1) begin
               Greeneven <= 16'b0;
             end
-            if (& Greeneven [14:0]) begin
+            else if (| Greeneven [14:8]) begin
               Greeneven <= 16'd255;
             end
 
@@ -412,13 +412,13 @@ always_ff @ (posedge Clock_50_I or negedge Resetn) begin
             if (Blueeven[15] == 1'b1) begin
               Blueeven <= 16'b0;
             end
-            if (& Blueeven [14:0]) begin
+            else if (| Blueeven [14:8]) begin
               Blueeven <= 16'd255;
             end
             if (Redodd[15] == 1'b1) begin
               Redodd <= 16'b0;
             end
-            if (& Redodd [14:0]) begin
+            else if (| Redodd [14:8]) begin
               Redodd <= 16'd255;
             end
 
@@ -440,13 +440,13 @@ always_ff @ (posedge Clock_50_I or negedge Resetn) begin
               if (Greenodd[15] == 1'b1) begin
               Greenodd <= 16'b0;
             end
-            if (& Greenodd [14:0]) begin
+            else if (| Greenodd [14:8]) begin
               Greenodd <= 16'd255;
             end
             if (Blueodd[15] == 1'b1) begin
               Blueodd <= 16'b0;
             end
-            if (& Blueodd [14:0]) begin
+            else if (| Blueodd [14:8]) begin
               Blueodd <= 16'd255;
             end
 
@@ -536,13 +536,13 @@ always_ff @ (posedge Clock_50_I or negedge Resetn) begin
             if (Redeven[15] == 1'b1) begin
               Redeven <= 16'b0;
             end
-            if (& Redeven [14:0]) begin
+            else if (| Redeven [14:8]) begin
               Redeven <= 16'd255;
             end
-            if (Greeneven[15] == 1'b1) begin
+            else if (Greeneven[15] == 1'b1) begin
               Greeneven <= 16'b0;
             end
-            if (& Greeneven [14:0]) begin
+            else if (| Greeneven [14:8]) begin
               Greeneven <= 16'd255;
             end
 
@@ -562,13 +562,13 @@ always_ff @ (posedge Clock_50_I or negedge Resetn) begin
            if (Blueeven[15] == 1'b1) begin
               Blueeven <= 16'b0;
             end
-            if (& Blueeven [14:0]) begin
+            else if (| Blueeven [14:8]) begin
               Blueeven <= 16'd255;
             end
             if (Redodd[15] == 1'b1) begin
               Redodd <= 16'b0;
             end
-            if (& Redodd [14:0]) begin
+            else if (| Redodd [14:8]) begin
               Redodd <= 16'd255;
             end
 
@@ -594,13 +594,13 @@ always_ff @ (posedge Clock_50_I or negedge Resetn) begin
            if (Greenodd[15] == 1'b1) begin
               Greenodd <= 16'b0;
             end
-            if (& Greenodd [14:0]) begin
+            else if (| Greenodd [14:8]) begin
               Greenodd <= 16'd255;
             end
             if (Blueodd[15] == 1'b1) begin
               Blueodd <= 16'b0;
             end
-            if (& Blueodd [14:0]) begin
+            else if (| Blueodd [14:8]) begin
               Blueodd <= 16'd255;
             end
          //
@@ -674,13 +674,13 @@ always_ff @ (posedge Clock_50_I or negedge Resetn) begin
             if (Redeven[15] == 1'b1) begin
               Redeven <= 16'b0;
             end
-            if (& Redeven [14:0]) begin
+            else if (| Redeven [14:8]) begin
               Redeven <= 16'd255;
             end
             if (Greeneven[15] == 1'b1) begin
               Greeneven <= 16'b0;
             end
-            if (& Greeneven [14:0]) begin
+            else if (| Greeneven [14:8]) begin
               Greeneven <= 16'd255;
             end
 
@@ -705,13 +705,13 @@ always_ff @ (posedge Clock_50_I or negedge Resetn) begin
             if (Blueeven[15] == 1'b1) begin
               Blueeven <= 16'b0;
             end
-            if (& Blueeven [14:0]) begin
+            else if (| Blueeven [14:8]) begin
               Blueeven <= 16'd255;
             end
             if (Redodd[15] == 1'b1) begin
               Redodd <= 16'b0;
             end
-            if (& Redodd [14:0]) begin
+            else if (| Redodd [14:8]) begin
               Redodd <= 16'd255;
             end
 
@@ -757,13 +757,13 @@ always_ff @ (posedge Clock_50_I or negedge Resetn) begin
            if (Greenodd[15] == 1'b1) begin
               Greenodd <= 16'b0;
             end
-            if (& Greenodd [14:0]) begin
+            else if (| Greenodd [14:8]) begin
               Greenodd <= 16'd255;
             end
             if (Blueodd[15] == 1'b1) begin
               Blueodd <= 16'b0;
             end
-            if (& Blueodd [14:0]) begin
+            else if (| Blueodd [14:8]) begin
               Blueodd <= 16'd255;
             end
          //
@@ -803,7 +803,7 @@ always_ff @ (posedge Clock_50_I or negedge Resetn) begin
          Y_count <= Y_count + 1'b1;
          SRAM_write_data <= {Greenodd[7:0],Blueodd[7:0]};
          Veven <= RegV[2];
-          // Vodd <= ((Mult_result+Mult2_result+Mult3_result+8'd128)>>> 8);
+         Vodd <= ((Mult_result+Mult2_result+Mult3_result+8'd128)>>> 8);
         state<=S_Begin14;
 
 
@@ -836,13 +836,13 @@ always_ff @ (posedge Clock_50_I or negedge Resetn) begin
             if (Redeven[15] == 1'b1) begin
               Redeven <= 16'b0;
             end
-            if (& Redeven [14:0]) begin
+            else if (| Redeven [14:8]) begin
               Redeven <= 16'd255;
             end
             if (Greeneven[15] == 1'b1) begin
               Greeneven <= 16'b0;
             end
-            if (& Greeneven [14:0]) begin
+            else if (| Greeneven [14:8]) begin
               Greeneven <= 16'd255;
             end
            //
@@ -873,13 +873,13 @@ always_ff @ (posedge Clock_50_I or negedge Resetn) begin
              if (Blueeven[15] == 1'b1) begin
               Blueeven <= 16'b0;
             end
-            if (& Blueeven [14:0]) begin
+            else if (| Blueeven [14:8]) begin
               Blueeven <= 16'd255;
             end
             if (Redodd[15] == 1'b1) begin
               Redodd <= 16'b0;
             end
-            if (& Redodd [14:0]) begin
+            else if (| Redodd [14:8]) begin
               Redodd <= 16'd255;
             end
 
@@ -910,18 +910,18 @@ always_ff @ (posedge Clock_50_I or negedge Resetn) begin
            if (Greenodd[15] == 1'b1) begin
               Greenodd <= 16'b0;
             end
-            if (& Greenodd [14:0]) begin
+            else if (| Greenodd [14:8]) begin
               Greenodd <= 16'd255;
             end
             if (Blueodd[15] == 1'b1) begin
               Blueodd <= 16'b0;
             end
-            if (& Blueodd [14:0]) begin
+            else if (| Blueodd [14:8]) begin
               Blueodd <= 16'd255;
             end
          //
 
-
+           RGB_count <= RGB_count + 1'b1;
            SRAM_we_n <= 1'b0; SRAM_write_data <=
 {Blueeven[7:0],Redodd[7:0]};
            SRAM_address <= RGB_count;
@@ -936,19 +936,20 @@ always_ff @ (posedge Clock_50_I or negedge Resetn) begin
        end
 
        S_End4: begin
+          SRAM_address <= RGB_count;
           SRAM_write_data <= {Greenodd[7:0],Blueodd[7:0]};
            SRAM_we_n <= 1'b0;
              Veven <= RegV[2];
              Vodd <= ((Mult_result+Mult2_result+Mult3_result+8'd128)>>> 8);
            state <=S_End5;
-           RegY[0] <= SRAM_read_data[15:8];
-           RegY[1] <= SRAM_read_data[7:0];
+           
        end
 
        S_End5: begin
           SRAM_we_n <= 1'b1;
            state<=S_End6;
-
+          RegY[0] <= SRAM_read_data[15:8];
+           RegY[1] <= SRAM_read_data[7:0];
            Redeven <= ((Mult_result + Mult2_result)>>> 16);
 
            Blueeven <= ((Mult_result + Mult3_result)>>> 16);
@@ -978,13 +979,13 @@ always_ff @ (posedge Clock_50_I or negedge Resetn) begin
             if (Redeven[15] == 1'b1) begin
               Redeven <= 16'b0;
             end
-            if (& Redeven [14:0]) begin
+            else if (| Redeven [14:8]) begin
               Redeven <= 16'd255;
             end
             if (Greeneven[15] == 1'b1) begin
               Greeneven <= 16'b0;
             end
-            if (& Greeneven [14:0]) begin
+            else if (| Greeneven [14:8]) begin
               Greeneven <= 16'd255;
             end
            //
@@ -1029,13 +1030,13 @@ always_ff @ (posedge Clock_50_I or negedge Resetn) begin
              if (Blueeven[15] == 1'b1) begin
               Blueeven <= 16'b0;
             end
-            if (& Blueeven [14:0]) begin
+            else if (| Blueeven [14:8]) begin
               Blueeven <= 16'd255;
             end
             if (Redodd[15] == 1'b1) begin
               Redodd <= 16'b0;
             end
-            if (& Redodd [14:0]) begin
+            else if (| Redodd [14:8]) begin
               Redodd <= 16'd255;
             end
 
@@ -1063,13 +1064,13 @@ always_ff @ (posedge Clock_50_I or negedge Resetn) begin
            if (Greenodd[15] == 1'b1) begin
               Greenodd <= 16'b0;
             end
-            if (& Greenodd [14:0]) begin
+            else if (| Greenodd [14:8]) begin
               Greenodd <= 16'd255;
             end
             if (Blueodd[15] == 1'b1) begin
               Blueodd <= 16'b0;
             end
-            if (& Blueodd [14:0]) begin
+            else if (| Blueodd [14:8]) begin
               Blueodd <= 16'd255;
             end
          //
@@ -1077,6 +1078,7 @@ always_ff @ (posedge Clock_50_I or negedge Resetn) begin
            SRAM_we_n <= 1'b0;
            SRAM_write_data <= {Blueeven[7:0],Redodd[7:0]};
            SRAM_address <=RGB_count;
+           RGB_count <= RGB_count + 1'b1;
 
 
              Uodd <= ((Mult_result+Mult2_result+Mult3_result+8'd128)>>> 8);
@@ -1090,7 +1092,7 @@ always_ff @ (posedge Clock_50_I or negedge Resetn) begin
        S_End10: begin
            SRAM_we_n <= 1'b0;
            SRAM_write_data <= {Greenodd[7:0],Blueodd[7:0]};
-
+           SRAM_address <=RGB_count;
               Veven <= RegV[2];
               Vodd <= ((Mult_result+Mult2_result+Mult3_result+8'd128)>>> 8);
            RegY[0] <= SRAM_read_data[15:8];
@@ -1166,7 +1168,18 @@ always_comb begin
   Mult_op_1 = 0;
 
   Mult_op_2 = 0;
+    Mult2_op_1 = 0;
+
+  Mult2_op_2 = 0;
+    Mult3_op_1 = 0;
+
+  Mult3_op_2 = 0;
   flag = 1'b0;
+  
+  
+  
+  
+  
        //Redodd <= 32'd0;
       // Blue <= 32'd0;
     //   Green <= 32'd0;
@@ -1198,7 +1211,7 @@ always_comb begin
 
   ////
 
-  if (state == S_Begin7 || state == S_Begin13||state==S_Begin19||state==S_End4) begin
+  if (state == S_Begin7 || state == S_Begin13||state==S_Begin19||state==S_End4||state==S_End10) begin
 
       Mult_op_1 = 32'd21;
 
@@ -1218,7 +1231,7 @@ always_comb begin
 
   end
 
-  if (state == S_Begin8|| state == S_Begin14||state==S_Begin20||state==S_End5) begin
+  if (state == S_Begin8|| state == S_Begin14||state==S_Begin20||state==S_End5||state==S_End11) begin
 
 
 

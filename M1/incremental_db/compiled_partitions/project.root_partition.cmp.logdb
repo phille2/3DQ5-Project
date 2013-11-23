@@ -1,0 +1,10 @@
+v1
+DSP_BALANCING_IMPLEMENTATION,DSP_BLOCKS,milestone1:Milestone1_unit|lpm_mult:Mult2|mult_p1t:auto_generated|mac_out2,
+DSP_BALANCING_IMPLEMENTATION,DSP_BLOCKS,milestone1:Milestone1_unit|lpm_mult:Mult1|mult_n1t:auto_generated|mac_out2,
+DSP_BALANCING_IMPLEMENTATION,DSP_BLOCKS,milestone1:Milestone1_unit|lpm_mult:Mult0|mult_r8t:auto_generated|mac_out2,
+DSP_BALANCING_IMPLEMENTATION,DSP_BLOCKS,milestone1:Milestone1_unit|lpm_mult:Mult1|mult_n1t:auto_generated|mac_out4,
+DSP_BALANCING_IMPLEMENTATION,DSP_BLOCKS,milestone1:Milestone1_unit|lpm_mult:Mult0|mult_r8t:auto_generated|mac_out4,
+DSP_BALANCING_IMPLEMENTATION,DSP_BLOCKS,milestone1:Milestone1_unit|lpm_mult:Mult2|mult_p1t:auto_generated|mac_out4,
+DSP_BALANCING_IMPLEMENTATION,DSP_BLOCKS,milestone1:Milestone1_unit|lpm_mult:Mult2|mult_p1t:auto_generated|mac_out6,
+PORT_SWAPPING,PORT_SWAP_TYPE_DSPMULT,milestone1:Milestone1_unit|lpm_mult:Mult0|mult_r8t:auto_generated|mac_mult1,
+PORT_SWAPPING,PORT_SWAP_TYPE_DSPMULT,milestone1:Milestone1_unit|lpm_mult:Mult2|mult_p1t:auto_generated|mac_mult5,
